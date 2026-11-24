@@ -54,7 +54,6 @@ const { title, wide = false } = Astro.props;
       .site nav a:hover { background:var(--blue-soft); }
       .slim { margin:0; padding:.35rem 1rem; text-align:center; font-size:.85rem; color:var(--gold-ink); background:var(--gold-soft); }
       .slim a { color:inherit; font-weight:700; white-space:nowrap; }
-      .visits { max-width:56rem; margin:0 auto; padding:1.2rem 1.1rem 2.5rem; color:var(--muted); font-size:.85rem; text-align:center; }
       footer.foot { max-width:56rem; margin:0 auto; padding:1.5rem 1.1rem 3rem; color:var(--muted); font-size:.88rem; border-top:1px solid var(--line); }
       footer.foot a { color:inherit; margin-right:1rem; white-space:nowrap; }
 
@@ -186,21 +185,6 @@ const { title, wide = false } = Astro.props;
     </div>
     <p class="slim">General information, not legal or tax advice. <a href="/footnotes">Footnotes</a></p>
     <main id="main" class={wide ? 'wide' : ''}><slot /></main>
-    <p class="visits" id="visits" hidden>Visits: <span id="visit-count"></span></p>
-    <script is:inline>
-      (function(){
-        var el=document.getElementById('visits'), n=document.getElementById('visit-count');
-        var base='https://api.counterapi.dev/v1/expat-guide-pt/visits/', seen=false;
-        try { seen=sessionStorage.getItem('eg-counted')==='1'; } catch(e){}
-        fetch(base+(seen?'':'up'))
-          .then(function(r){ return r.json(); })
-          .then(function(d){
-            if(d && typeof d.count==='number'){ n.textContent=d.count.toLocaleString('en-US'); el.hidden=false; }
-            try { sessionStorage.setItem('eg-counted','1'); } catch(e){}
-          })
-          .catch(function(){});
-      })();
-    </script>
     <script is:inline>
       (function(){
         var root=document.documentElement, btn=document.getElementById('design-toggle');
