@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import { getImage } from 'astro:assets';
+import meta from '../gallery/gallery.json';
+const files = import.meta.glob('../gallery/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' }) as Record<string, ImageMetadata>;
+const byName = Object.fromEntries(Object.entries(files).map(([k, v]) => [k.split('/').pop()!, v]));
+const items = await Promise.all(Object.entries(meta as Record<string, any>).filter(([f]) => byName[f]).map(async ([f, m]) => {
+  const thumb = await getImage({ src: byName[f], width: 600, height: 600, fit: 'cover', format: 'webp' });
+  const full = await getImage({ src: byName[f], width: 1600, format: 'webp' });
+  return { m, thumb, full };
+}));
+---
+<Base title="Photo gallery">
+  <div class="gal">
+    <p><a href="/">&larr; Home</a></p>
+    <h1>Photo gallery</h1>
+    <p class="muted">Tap a photo to see it larger.</p>
+    <ul class="grid">
+      {items.map(({ m, thumb, full }) => (
+        <li>
+          <a href={full.src} data-cap={[m.caption, m.credit, m.license].filter(Boolean).join(' · ')} data-alt={m.alt}>
+            <img src={thumb.src} width="300" height="300" alt={m.alt} loading="lazy" decoding="async" />
+          </a>
+          <span class="cap">{m.caption}</span>
+          {(m.credit || m.license) && <span class="cr">{m.credit}{m.license && <> · {m.source ? <a href={m.source} rel="noopener">{m.license}</a> : m.license}</>}</span>}
+        </li>
+      ))}
+    </ul>
+  </div>
+  <dialog id="lb" aria-label="Photo viewer">
+    <button type="button" class="x" aria-label="Close">&times;</button>
+    <img id="lbimg" alt="" />
+    <p id="lbcap"></p>
+  </dialog>
+</Base>
+<style is:global>
+  .gal .grid{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .gal .grid a{display:block;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px var(--shadow);line-height:0}
+  .gal .grid img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;display:block}
+  .gal .cap{display:block;font-weight:700;font-size:.92rem;margin-top:.4rem}
+  .gal .cr{display:block;font-size:.78rem;color:var(--muted)}
+  #lb{border:0;padding:0;background:transparent;max-width:min(96vw,1000px);max-height:96vh;color:#fff;text-align:center;overflow:visible}
+  #lb::backdrop{background:rgba(10,16,28,.88)}
+  #lb img{max-width:100%;max-height:80vh;border-radius:12px;display:block;margin:0 auto}
+  #lb p{margin:.6rem 0 0;font-size:.95rem}
+  #lb .x{position:absolute;top:-2.4rem;right:0;background:none;border:0;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer}
+</style>
+<script>
+  const dlg = document.getElementById('lb') as HTMLDialogElement;
+  const img = document.getElementById('lbimg') as HTMLImageElement;
+  const cap = document.getElementById('lbcap')!;
+  document.querySelectorAll<HTMLAnchorElement>('.gal .grid a').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    img.src = a.href; img.alt = a.dataset.alt || ''; cap.textContent = a.dataset.cap || '';
+    dlg.showModal();
+  }));
+  dlg.addEventListener('click', e => { if (e.target !== img) dlg.close(); });
+  dlg.querySelector('.x')!.addEventListener('click', () => dlg.close());
+</script>

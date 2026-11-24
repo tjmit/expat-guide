@@ -37,6 +37,10 @@ const phases = [
         <div class="photo"><img src="/pena-palace-hero.jpg" width="720" height="720" alt="Pena Palace on its forested hilltop in Sintra: red clock tower, red and yellow walls under a cloudy sky" /></div>
       </div>
     </div>
+    <a class="gcircle" href="/gallery">
+      <span class="pic"><Icon name="camera" /></span>
+      <span class="gh">Photo gallery</span>
+    </a>
     <section class="findit">
       <h2>What do you need help with?</h2>
       <p class="sub">Or search every question by a word, like NIF or visa.</p>
@@ -54,8 +58,12 @@ const phases = [
 .home .lede{margin:0;color:var(--muted);font-size:1.15rem}
 /* h2.where defined below */
 .home .sub{text-align:center;color:var(--muted);margin:0 0 1.4rem;font-size:1.05rem}
-.home .findit{text-align:center;margin:2.8rem auto 0;padding:1.6rem 1rem;background:var(--blue-soft);border-radius:28px;max-width:44rem}.home .findit h2{margin:0 0 .5rem;font-size:1.5rem}.home .findit .sub{margin:0 0 1.1rem}
+.home .findit{text-align:center;margin:1.8rem auto 0;padding:1.6rem 1rem;background:var(--blue-soft);border-radius:28px;max-width:44rem}.home .findit h2{margin:0 0 .5rem;font-size:1.5rem}.home .findit .sub{margin:0 0 1.1rem}
 
+.home .gcircle{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:128px;aspect-ratio:1;margin:1.8rem auto 0;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.18),transparent 60%),#3b4a66;color:#fff;text-decoration:none;box-shadow:0 6px 16px var(--shadow);transition:transform .15s ease}
+.home .gcircle:hover{transform:translateY(-3px)}
+.home .gcircle .pic{width:2rem;height:2rem;margin-bottom:.2rem}.home .gcircle .pic .i{--s:1.2rem}
+.home .gcircle .gh{font-family:var(--font-display);font-weight:600;font-size:.95rem;line-height:1.1;padding:0 .5rem}
 .home .where{text-align:center;font-size:clamp(1.6rem,5vw,2.1rem);margin:0 0 .4rem}
 .home .stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;justify-items:center;margin:0 auto;max-width:520px}
 .home .hero{order:-1;grid-column:1/-1;width:min(56vw,240px)}
