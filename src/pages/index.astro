@@ -4,6 +4,9 @@ import Icon from '../components/Icon.astro';
 import SearchBox from '../components/SearchBox.astro';
 import { getQA } from '../lib/qa';
 import { PHASE_ICON } from '../lib/icons';
+import { getImage } from 'astro:assets';
+import bomJesus from '../gallery/baroque-stairway-church.jpg';
+const gthumb = await getImage({ src: bomJesus, width: 288, height: 288, fit: 'cover', format: 'webp' });
 const qa = await getQA();
 const count = (k: string) => qa.filter(e => e.data.phase === k).length;
 const phases = [
@@ -34,7 +37,7 @@ const phases = [
         </a>
       ))}
       <a class="gcircle" href="/gallery">
-        <span class="pic"><Icon name="camera" /></span>
+        <img class="gimg" src={gthumb.src} width="144" height="144" alt="" />
         <span class="gh">Photo gallery</span>
       </a>
       <div class="hero">
@@ -60,6 +63,10 @@ const phases = [
 .home .findit{text-align:center;margin:1.8rem auto 0;padding:1.6rem 1rem;background:var(--blue-soft);border-radius:28px;max-width:44rem}.home .findit h2{margin:0 0 .5rem;font-size:1.5rem}.home .findit .sub{margin:0 0 1.1rem}
 
 .home .gcircle{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:128px;aspect-ratio:1;margin:.6rem auto 0;grid-column:1/-1;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.18),transparent 60%),#3b4a66;color:#fff;text-decoration:none;box-shadow:0 6px 16px var(--shadow);transition:transform .15s ease}
+.home .gcircle{position:relative;overflow:hidden;justify-content:flex-end;padding-bottom:1.1rem}
+.home .gcircle .gimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.home .gcircle::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,28,45,.82) 0%,rgba(20,28,45,.35) 45%,transparent 70%)}
+.home .gcircle .gh{position:relative;z-index:1;font-size:.9rem;max-width:5.5rem;text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .home .gcircle:hover{transform:translateY(-3px)}
 .home .gcircle .pic{width:2rem;height:2rem;margin-bottom:.2rem}.home .gcircle .pic .i{--s:1.2rem}
 .home .gcircle .gh{font-family:var(--font-display);font-weight:600;font-size:.95rem;line-height:1.1;padding:0 .5rem}
