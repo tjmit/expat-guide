@@ -33,14 +33,14 @@ const phases = [
           <span class="tapme">Tap to open <Icon name="arrow-right" /></span>
         </a>
       ))}
+      <a class="gcircle" href="/gallery">
+        <span class="pic"><Icon name="camera" /></span>
+        <span class="gh">Photo gallery</span>
+      </a>
       <div class="hero">
         <div class="photo"><img src="/sintra-pena-hero.jpg" width="720" height="720" alt="Pena Palace on its forested hilltop in Sintra: red clock tower, red and yellow walls under a cloudy sky" /></div>
       </div>
     </div>
-    <a class="gcircle" href="/gallery">
-      <span class="pic"><Icon name="camera" /></span>
-      <span class="gh">Photo gallery</span>
-    </a>
     <section class="findit">
       <h2>What do you need help with?</h2>
       <p class="sub">Or search every question by a word, like NIF or visa.</p>
@@ -59,7 +59,7 @@ const phases = [
 .home .sub{text-align:center;color:var(--muted);margin:0 0 1.4rem;font-size:1.05rem}
 .home .findit{text-align:center;margin:1.8rem auto 0;padding:1.6rem 1rem;background:var(--blue-soft);border-radius:28px;max-width:44rem}.home .findit h2{margin:0 0 .5rem;font-size:1.5rem}.home .findit .sub{margin:0 0 1.1rem}
 
-.home .gcircle{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:128px;aspect-ratio:1;margin:1.8rem auto 0;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.18),transparent 60%),#3b4a66;color:#fff;text-decoration:none;box-shadow:0 6px 16px var(--shadow);transition:transform .15s ease}
+.home .gcircle{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:128px;aspect-ratio:1;margin:.6rem auto 0;grid-column:1/-1;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.18),transparent 60%),#3b4a66;color:#fff;text-decoration:none;box-shadow:0 6px 16px var(--shadow);transition:transform .15s ease}
 .home .gcircle:hover{transform:translateY(-3px)}
 .home .gcircle .pic{width:2rem;height:2rem;margin-bottom:.2rem}.home .gcircle .pic .i{--s:1.2rem}
 .home .gcircle .gh{font-family:var(--font-display);font-weight:600;font-size:.95rem;line-height:1.1;padding:0 .5rem}
@@ -81,7 +81,8 @@ const phases = [
 @media (max-width:480px){.home .count{display:none}.home .tapme{margin-top:.4rem}.home .circle{padding:7%}}
 @media (min-width:900px){
  .home .stage{grid-template-columns:236px 400px 236px;gap:20px 24px;max-width:none;justify-content:center;align-items:center}
- .home .hero{order:0;grid-column:2;grid-row:1/4;width:100%}
+ .home .hero{order:0;grid-column:2;grid-row:1/3;width:100%}
+ .home .gcircle{grid-column:2;grid-row:3;margin:0}
  .home .circle{width:236px}
  .home .k-B1{grid-column:1;grid-row:1}.home .k-B3{grid-column:1;grid-row:2}.home .k-B5{grid-column:1;grid-row:3}
  .home .k-B2{grid-column:3;grid-row:1}.home .k-B4{grid-column:3;grid-row:2}.home .k-B6{grid-column:3;grid-row:3}
