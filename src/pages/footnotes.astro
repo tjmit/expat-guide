@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Legend from '../components/Legend.astro';
+import boxSources from '../lib/boxSources.json';
+const order = ['Cascais at a glance', 'Mercado da Vila', 'Places to visit', 'Where to eat', 'Grocery shopping', 'Portugal in a nutshell'];
+---
+<Base title="Footnotes">
+  <h1>Footnotes</h1>
+  <h2>Please read</h2>
+  <p><strong>General information only, not legal, tax or medical advice.</strong> Not affiliated with any school or government body. Always confirm with the official source linked on each item.</p>
+  <p><strong>Who made this site.</strong> This site was originated by Todd Mitchell. The idea, the questions, the direction, the choices about what to include and cut, and the design decisions are his, and they came from his prompts. Claude, an AI assistant made by Anthropic, worked as the researcher and the coder: it searched for and read sources, drafted the answers and labelled how well each is confirmed, and wrote the code that builds the site.</p>
+  <p><strong>Claude-drafted content.</strong> Because Claude drafted the research text, it still needs professional review (immigration, tax, customs) before anyone relies on it.</p>
+  <p>Items show when they were last checked against the linked source. A "checked" date is not a promise the source is still current.</p>
+  <h2>What the labels mean</h2>
+  <Legend open />
+  <p class="muted">The original label is shown inside each answer under its citations.</p>
+  <h2>Sources for the Cascais and Portugal boxes</h2>
+  <p class="muted">Dates are as shown on each page. Most guides are travel or tourism pages, not official sources, so confirm hours, prices and opening days before you go.</p>
+  {order.map(k => boxSources[k] && (<><h3>{k}</h3><div set:html={boxSources[k]} /></>))}
+  <h2>Credits</h2>
+  <ul>
+    <li>Icons: <a href="https://lucide.dev" rel="noopener">Lucide</a>, ISC licence. Copyright (c) 2026 Lucide Icons and Contributors. Permission to use, copy, modify, and/or distribute the icons for any purpose with or without fee is granted, provided the copyright and permission notice appear in all copies.</li>
+    <li>Pena Palace photo: Michael Gaylard, <a href="https://creativecommons.org/licenses/by/4.0" rel="noopener">CC BY 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Pena_Palace,_Sintra,_Portugal_-_Tourists_and_Architecture_(55256593163).jpg" rel="noopener">Wikimedia Commons</a> (cropped).</li>
+    <li>Fonts: Fraunces and Nunito, SIL Open Font License, loaded from Google Fonts.</li>
+  </ul>
+</Base>

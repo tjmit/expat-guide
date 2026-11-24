@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import PhaseSummary from '../../components/PhaseSummary.astro';
+import LangCheck from '../../components/LangCheck.astro';
+import CascaisMarket from '../../components/CascaisMarket.astro';
+import CascaisVisit from '../../components/CascaisVisit.astro';
+import CascaisEat from '../../components/CascaisEat.astro';
+import CascaisGroceries from '../../components/CascaisGroceries.astro';
+import PortugalAbout from '../../components/PortugalAbout.astro';
+import CascaisAbout from '../../components/CascaisAbout.astro';
+import EmployerHelp from '../../components/EmployerHelp.astro';
+import QAList from '../../components/QAList.astro';
+import { getCollection } from 'astro:content';
+import { getPhases, getQA, md } from '../../lib/qa';
+import { PHASE_ICON, PHASE_TONE } from '../../lib/icons';
+
+export async function getStaticPaths() {
+  const phases = await getPhases();
+  const qa = await getQA();
+  const notes = await getCollection('notes');
+  return phases.map(p => ({
+    params: { slug: p.slug },
+    props: {
+      phase: p, phases,
+      items: qa.filter(e => e.data.phase === p.key),
+      notes: notes.filter(n => n.data.phase === p.key),
+    },
+  }));
+}
+const { phase, phases, items, notes } = Astro.props;
+// the source file's own heading is replaced by the page title
+const intro = phase.intro.replace(/^# .*\n/, '').trim();
+const tone = PHASE_TONE[phase.key];
+---
+<Base title={phase.title} wide>
+  <section class={`phase-hero t-${tone}`}>
+    <span class="pico"><Icon name={PHASE_ICON[phase.key]} /></span>
+    <div>
+      <a class="back" href="/">← All topics</a>
+      <h1>{phase.title}</h1>
+      {phase.key === 'B6' && <p class="also">Also covers Estoril, Carcavelos, Parede, Alcabideche and São Domingos de Rana.</p>}
+      <p class="count" data-n={items.length}>{items.length} questions. Tap one to see the answer.</p>
+      <a class="skipq" href="#questions">Jump to the questions ↓</a>
+    </div>
+  </section>
+  <EmployerHelp phaseKey={phase.key} items={items} />
+  {phase.key !== 'B6' && <PhaseSummary phaseKey={phase.key} items={items} />}
+  {phase.key === 'B6' && <CascaisAbout />}
+  {phase.key === 'B6' && <CascaisMarket />}
+  {phase.key === 'B6' && <CascaisVisit />}
+  {phase.key === 'B6' && <CascaisEat />}
+  {phase.key === 'B6' && <CascaisGroceries />}
+  {phase.key === 'B5' && <LangCheck />}
+  {phase.key === 'B5' && <PortugalAbout />}
+  <QAList items={items} searchAtBottom />
+  <ul class="pill-nav" aria-label="Other topics">
+    {phases.filter((p: any) => p.key !== phase.key).map((p: any) => <li><a class={`t-${PHASE_TONE[p.key]}`} href={p.url}><Icon name={PHASE_ICON[p.key]} />{p.title}</a></li>)}
+  </ul>
+</Base>
+<style is:global>
+  .phase-hero { display:flex; gap:1.1rem; align-items:center; background:var(--tc); color:#fff; border-radius:24px; padding:1.2rem 1.4rem; margin:.4rem 0 .6rem; box-shadow:0 8px 22px var(--shadow); }
+  .phase-hero.t-gold { --tc:#9a6a00; } .phase-hero.t-blue { --tc:#1f4e8c; } .phase-hero.t-red { --tc:#a9352a; } .phase-hero.t-green { --tc:#2d6a4f; } .phase-hero.t-teal { --tc:#0f6b73; } .phase-hero.t-plum { --tc:#6a3f8e; }
+  .phase-hero h1 { color:#fff; margin:.1rem 0; font-size:clamp(1.6rem,5.5vw,2.2rem); } .phase-hero p { margin:0; opacity:.92; }
+  .phase-hero .pico { display:grid; place-items:center; flex:none; width:4rem; height:4rem; border-radius:50%; background:rgba(255,255,255,.22); } .phase-hero .pico .i { --s:2.2rem; }
+  .phase-hero .back { color:#fff; font-size:.85rem; font-weight:700; opacity:.9; }
+  .behind { font-size:1.1rem; margin-top:2.5rem; color:var(--muted); }
+  @media (max-width:600px){ .phase-hero { padding:1rem; gap:.8rem; } .phase-hero .pico { width:3rem; height:3rem; } .phase-hero .pico .i { --s:1.6rem; } }
+</style>

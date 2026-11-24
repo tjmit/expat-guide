@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+const schedule = [
+  { d: 'Every day (closed Christmas Day)', t: 'Restaurants, terraces and shops. Summer: Mon to Thu and Sun 8:00 to midnight, Fri and Sat 8:00 to 2:00 am. Winter: daily 8:00 to midnight.' },
+  { d: 'Fish and butcher stalls', t: 'Tue to Fri and Sun 8:00 to 14:00. Wed and Sat 6:30 to 14:00.' },
+  { d: 'Mercado Saloio (fresh produce)', t: 'Wed and Sat 6:30 to 14:00. Sun 8:00 to 14:00.' },
+  { d: 'Wednesday', t: 'Feira do Levante (the Wednesday market, selling clothing, crockery and household goods), 9:00 to 14:00.' },
+  { d: 'Saturday', t: 'Organic market (Cascais Agro-Bio) 9:00 to 14:00. Happy Life Vila Market 8:00 to 17:00.' },
+  { d: 'Sunday', t: 'Artistas no Bairro (national brands, urban crafts and design), 9:00 to 17:00.' },
+  { d: 'Some weekends', t: 'Feira da Bagageira (a trunk fair, like a flea market: second-hand, vintage and antiques), 9:00 to 17:00 on the 2nd and 3rd Sunday of the month. Happy Life Vila Market also runs on the third Friday evening, 12:00 to 22:00.' },
+];
+---
+<section id="cascais-market" class="mkt" aria-label="Mercado da Vila">
+  <h2>Mercado da Vila (the village market)</h2>
+  <p class="muted">From the Cascais council's market page and Time Out Cascais. Opening times change, so check before a special trip.</p>
+  <div class="mk-rows">
+    <div class="mk-row"><div class="mk-lab"><span class="ic"><Icon name="map-pin" /></span><h3>What it is</h3></div><p>The town's covered market, opened in 1952 and given the name Mercado da Vila in 2014. Its address is Rua Padre Moisés da Silva, and it is near Cascais train station. Over 100 businesses trade there, including about 67 stalls.</p></div>
+    <div class="mk-row"><div class="mk-lab"><span class="ic"><Icon name="shopping-cart" /></span><h3>What you will find</h3></div><p>Fish, bread, vegetables, fruit, meat, eggs, cheeses and flowers, plus places to eat and drink: a seafood counter (Marisco na Praça) where you pick and eat on the spot, tapas at Páteo do Petisco, roast suckling pig, chocolate, bakeries, a beer shop with about 90 beers, sushi and a wine bar.</p></div>
+    <div class="mk-row"><div class="mk-lab"><span class="ic"><Icon name="car" /></span><h3>Parking</h3></div><p>The council says the market has 300 parking spaces next to Cascais train station. Local tip from this guide's author, not an official source: it is a frequently used place to park when friends who don't live in Cascais come to visit by car. The pages read do not state parking prices or hours.</p></div>
+  </div>
+  <h3 class="mk-sub"><Icon name="clock" />Weekly schedule</h3>
+  <ul class="mk-sched">
+    {schedule.map(s => <li><span class="d">{s.d}</span><span>{s.t}</span></li>)}
+  </ul>
+</section>
+<style is:global>
+  .mkt { margin:1.4rem 0; background:var(--teal-soft); border-radius:20px; padding:.9rem 1.1rem 1rem; }
+  .mkt h2 { font-size:1.15rem; margin:0 0 .2rem; color:var(--teal); }
+  .mkt > p { margin:0 0 .7rem; font-size:.92rem; }
+  .mk-rows { display:flex; flex-direction:column; gap:.5rem; }
+  .mk-row { display:grid; grid-template-columns:12.5rem minmax(0,1fr); gap:.4rem 1rem; align-items:start; background:var(--surface); border-radius:14px; padding:.6rem .9rem; }
+  .mk-lab { display:flex; align-items:center; gap:.6rem; }
+  .mk-lab .ic { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--teal-soft); color:var(--teal); } .mk-lab .ic .i { --s:1.1rem; }
+  .mk-lab h3 { margin:0; font-size:.98rem; color:var(--teal); }
+  .mk-row p { margin:0; font-size:.92rem; line-height:1.5; }
+  .mk-sub { display:flex; align-items:center; gap:.4rem; margin:1rem 0 .5rem; font-size:1rem; color:var(--teal); } .mk-sub .i { --s:1.1em; }
+  .mk-sched { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.4rem; }
+  .mk-sched li { display:grid; grid-template-columns:12.5rem minmax(0,1fr); gap:.2rem 1rem; background:var(--surface); border-radius:14px; padding:.5rem .9rem; font-size:.92rem; line-height:1.45; }
+  .mk-sched .d { font-weight:800; color:var(--teal); }
+  .mkt .mk-note { margin:.6rem 0 0; font-size:.85rem; }
+  .mk-src { margin-top:.7rem; font-size:.88rem; } .mk-src summary { cursor:pointer; font-weight:700; color:var(--teal); }
+  .mk-src ul { margin:.5rem 0 0; padding-left:1.2rem; } .mk-src li { margin:.25rem 0; }
+  @media (max-width:640px){ .mk-row, .mk-sched li { grid-template-columns:1fr; } }
+</style>

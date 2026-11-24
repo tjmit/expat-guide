@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+import { SUMMARIES } from '../lib/summaries';
+import { CONF_CLASS, CONF_ICON, CONF_LABEL } from '../lib/qa';
+const { phaseKey, items } = Astro.props;
+const s = SUMMARIES[phaseKey];
+const conf = (id: string) => items.find((e: any) => e.data.id === id)?.data.confidence;
+const cols = s ? [
+  { k: 'need', title: 'Need to do', icon: 'list-checks', tone: 'blue', lines: s.need },
+  { k: 'consider', title: 'Should consider', icon: 'lightbulb', tone: 'gold', lines: s.consider },
+  { k: 'know', title: 'Good to know', icon: 'info', tone: 'green', lines: s.know },
+] : [];
+---
+{s && (
+  <section class="short" aria-label="The short version">
+    <h2>The short version</h2>
+    <div class="short-grid">
+      {cols.map(c => (
+        <div class={`short-col t-${c.tone}`}>
+          <h3><span class="ic"><Icon name={c.icon} /></span>{c.title}</h3>
+          <ul>
+            {c.lines.map(l => { const cf = conf(l.id); return (
+              <li>
+                {cf && <span class={`dot ${CONF_CLASS[cf]}`} title={CONF_LABEL[cf]}><Icon name={CONF_ICON[cf]} /><span class="sr">{CONF_LABEL[cf]}.</span></span>}
+                <a href={`#${l.id}`}>{l.t}</a>
+              </li>
+            ); })}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+<style is:global>
+  .short { margin:1rem 0 1.4rem; }
+  .short h2 { font-size:1.3rem; margin:0 0 .7rem; }
+  .short-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.8rem; }
+  @media (max-width:780px) { .short-grid { grid-template-columns:1fr; } }
+  .short-col { background:var(--surface); border:1px solid var(--line); border-top:5px solid var(--tc); border-radius:16px; padding:.7rem .9rem .9rem; box-shadow:0 2px 8px var(--shadow); }
+  .short-col h3 { display:flex; align-items:center; gap:.5rem; font-size:1.05rem; margin:.1rem 0 .5rem; color:var(--tc); }
+  .short-col h3 .ic { display:grid; place-items:center; width:2rem; height:2rem; border-radius:50%; background:var(--ts); } .short-col h3 .ic .i { --s:1.1rem; }
+  .short-col ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.6rem; }
+  .short-col li { display:flex; gap:.5rem; align-items:flex-start; font-size:.95rem; line-height:1.45; }
+  .short-col li a { color:var(--ink); text-decoration:none; } .short-col li a:hover { text-decoration:underline; }
+  .dot { flex:none; display:grid; place-items:center; width:1.35rem; height:1.35rem; border-radius:50%; margin-top:.1rem; } .dot .i { --s:.9rem; }
+  .dot.ok { background:var(--green-soft); color:var(--green); } .dot.mid { background:var(--gold-soft); color:var(--gold-ink); } .dot.low { background:var(--red-soft); color:var(--red); }
+  .short-foot { margin:.6rem 0 0; }
+</style>

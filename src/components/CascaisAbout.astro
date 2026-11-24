@@ -1,0 +1,41 @@
+---
+import Icon from './Icon.astro';
+import PlacesMap from './PlacesMap.astro';
+const rows = [
+  { icon: 'map', t: 'Region and territory', x: 'A coastal town west of Lisbon, between the Sintra mountains and the Atlantic Ocean. It is part of the area often called the Estoril Coast or Portuguese Riviera, a popular name rather than an official region. The Cascais council area (the município, roughly like a US county) covers about 97 km² (38 square miles) and had about 214,000 residents in the 2021 census. It has four parishes (freguesias, roughly like districts or neighborhoods): Cascais and Estoril, Alcabideche, Carcavelos and Parede, and São Domingos de Rana. Lisbon is about 18 miles (29 km) east.' },
+  { icon: 'landmark', t: 'Culture', x: 'A cluster of nine museums within walking distance of each other, called the Museum Quarter, including the Casa das Histórias Paula Rego. The town museum is free. There are theatres, a Wednesday market, summer concerts and a street-art festival.' },
+  { icon: 'trees', t: 'Nature', x: 'The coast sits next to the Sintra-Cascais Natural Park. Guides list 17 beaches. Guincho is windy and used for surfing, windsurfing and kitesurfing. Cabo da Roca, the westernmost point of mainland Europe, is about a half-hour drive away. A cycle and walking path runs from Cascais marina to Guincho.' },
+  { icon: 'utensils', t: 'Cuisine', x: 'Food is a main reason people visit, and there are plenty of choices. Rua Amarela (Yellow Street) is a car-free street with about 40 restaurants, the Mercado da Vila has stalls and eateries, and the guides name good places all over town, from seafood and traditional Portuguese to Italian, Japanese and more. See Where to eat below.' },
+  { icon: 'music', t: 'Nightlife', x: 'Bars cluster around Rua Frederico Arouca (a street) and Largo Luís de Camões (a square), with expat pubs and cocktail bars in the marina. Casino Estoril is described as one of the largest casinos in Europe. One guide calls the scene sociable rather than rowdy.' },
+  { icon: 'train-front', t: 'Transportation', x: 'The Cascais railway line runs from Cais do Sodré station in Lisbon to Cascais, about 33 to 40 minutes. One guide says trains run every 10 to 12 minutes and that some change at Oeiras, while another calls it direct. The A5 motorway and a coastal road also lead to Lisbon, and Lisbon airport is the nearest.' },
+  { icon: 'cloud-sun', t: 'Climate', x: 'A warm-summer Mediterranean climate: mild, wet winters and warm, dry summers. Hills and the western coast can be windy, foggy and cool.' },
+];
+---
+<section id="cascais-about" class="about" aria-label="About Cascais">
+  <h2>Cascais at a glance</h2>
+  <p class="muted">A neutral overview drawn from tourism guides and Wikipedia, not confirmed against official sources. Handy Portuguese words: <em>praia</em> = beach, <em>rua</em> = street, <em>largo</em> = square, <em>mercado</em> = market, <em>câmara municipal</em> = city hall, <em>loja</em> = shop or service office.</p>
+  <div class="ab-grid">
+    {rows.map(r => (
+      <div class="ab-row">
+        <div class="ab-lab"><span class="ic"><Icon name={r.icon} /></span><h3>{r.t}</h3></div>
+        <p>{r.x}</p>
+      </div>
+    ))}
+  </div>
+  <PlacesMap />
+</section>
+<style is:global>
+  .about { margin:1rem 0 1.2rem; background:var(--teal-soft); border-radius:20px; padding:.9rem 1.1rem 1rem; }
+  .about h2 { font-size:1.15rem; margin:0 0 .2rem; color:var(--teal); }
+  .about > p { margin:0 0 .8rem; font-size:.92rem; }
+  .ab-grid { display:flex; flex-direction:column; gap:.5rem; }
+  .ab-row { display:grid; grid-template-columns:12.5rem minmax(0,1fr); gap:.4rem 1rem; align-items:start; background:var(--surface); border-radius:14px; padding:.6rem .9rem; }
+  .ab-lab { display:flex; align-items:center; gap:.6rem; }
+  .ab-row .ic { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--teal-soft); color:var(--teal); } .ab-row .ic .i { --s:1.1rem; }
+  .ab-row h3 { margin:0; font-size:.98rem; color:var(--teal); }
+  .ab-row p { margin:0; font-size:.92rem; line-height:1.5; }
+  @media (max-width:640px){ .ab-row { grid-template-columns:1fr; } }
+  .ab-src { margin-top:.7rem; font-size:.88rem; } .ab-src summary { cursor:pointer; font-weight:700; color:var(--teal); }
+  .ab-src ul { margin:.5rem 0 0; padding-left:1.2rem; } .ab-src li { margin:.25rem 0; }
+  .phase-hero .also { font-size:.82rem; opacity:.9; margin:0 0 .3rem; }
+</style>

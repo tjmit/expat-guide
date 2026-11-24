@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+const rows = [
+  { icon: 'sparkles', t: 'Boca do Inferno', x: 'The "Mouth of Hell" is a sea arch and chasm where waves crash upward. Fodor\'s says it is about 2 km (1 mile) west of town and is best at high tide or in stormy weather. Fenced paths lead to viewing platforms. Lonely Planet says to stay in the permitted areas, and Lisboa Secreta warns that waves there can be dangerous. No page I read says whether entry is free.' },
+  { icon: 'map-pin', t: 'Casa da Guia', x: 'A palace with gardens on the cliffs between Cascais and Guincho, opened as a private home in 1895 and to the public in 1999. Today it has restaurants and bars, shops and a gallery, and its gardens run along the cliff tops to the Guia Lighthouse. I found no hours or entry information.',
+    x2: 'Rock climbing: guided sessions start near the Guia Lighthouse on the coastal rock faces. The listings say they suit beginners and experienced climbers, last about 3 to 4 hours, and include a guide and equipment, but the details differ between listings, so read the one you book. These are booking pages, not endorsements, and I have not checked the providers.',
+    links: [
+      { t: 'Headout', u: 'https://www.headout.com/guided-tours/cascais-guided-rock-climbing-experience-at-guia-e-51730/' },
+      { t: 'Booking.com', u: 'https://www.booking.com/attractions/pt/prqrtfcw0rpg-rock-climbing-in-cascais-lisbon.en-gb.html' },
+      { t: 'Explore-Share', u: 'https://www.explore-share.com/trip/rock-climbing-in-portugal-sintra-cascais-arrabida-montejunto/' },
+    ] },
+  { icon: 'trees', t: 'Parque Marechal Carmona', x: 'A park with large lawns, tall trees, a picnic area and ponds, plus a playground and a café. Fodor\'s says to expect strolling ducks and peacocks. It sits next to the Condes de Castro Guimarães museum. Lonely Planet says part of the Cool Jazz festival is held there every July.' },
+  { icon: 'scroll-text', t: 'Museums', x: 'Three to start with: the Museu Condes de Castro Guimarães (a mansion with paintings, ceramics and furnishings, next to the park), the Casa das Histórias Paula Rego (the painter Paula Rego, in a building by architect Eduardo Souto de Moura) and the Museu do Mar (the town\'s fishing history). Lonely Planet says the town museum, the Museu da Vila, is free. No page gave current hours or prices, so check before you go.' },
+  { icon: 'cloud-sun', t: 'Beaches', x: 'Praia da Conceição is a two-minute walk from the train station, and an ocean pool, the Piscina Alberto Romano, is next to it. Praia da Rainha is one of the smallest beaches, with golden sand and rock formations. Guides disagree on how many beaches Cascais has (from 12 official ones to 17), and I could not find a description of Ribeira beach.' },
+  { icon: 'map', t: 'Guincho', x: 'Praia do Guincho is about 6 km from Cascais, directly exposed to the Atlantic, with dunes and rough water. Lonely Planet says experienced surfers and windsurfers go there and surf schools run all year. Lisboa Secreta calls it the most natural of the beaches and describes a cycle path from Cascais of about 9 km.' },
+];
+---
+<section id="cascais-visit" class="visit" aria-label="Places to visit in Cascais">
+  <h2>Places to visit</h2>
+  <p class="muted">A starter list from travel guides, not official tourism information. Hours, prices and opening days change, so check before you go.</p>
+  <div class="vs-grid">
+    {rows.map(r => (
+      <div class="vs-row">
+        <div class="vs-lab"><span class="ic"><Icon name={r.icon} /></span><h3>{r.t}</h3></div>
+        <div><p>{r.x}</p>{r.x2 && <p class="vs-more">{r.x2}</p>}{r.links && <p class="vs-links">Book a climb: {r.links.map((l, k) => <>{k > 0 && ' · '}<a href={l.u} target="_blank" rel="noopener noreferrer">{l.t}</a></>)}</p>}</div>
+      </div>
+    ))}
+  </div>
+</section>
+<style is:global>
+  .visit { margin:1.4rem 0; background:var(--blue-soft); border-radius:20px; padding:.9rem 1.1rem 1rem; }
+  .visit h2 { font-size:1.15rem; margin:0 0 .2rem; color:var(--blue); }
+  .visit > p { margin:0 0 .8rem; font-size:.92rem; }
+  .vs-grid { display:flex; flex-direction:column; gap:.5rem; }
+  .vs-row { display:grid; grid-template-columns:12.5rem minmax(0,1fr); gap:.4rem 1rem; align-items:start; background:var(--surface); border-radius:14px; padding:.6rem .9rem; }
+  .vs-lab { display:flex; align-items:center; gap:.6rem; }
+  .vs-row .ic { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--blue-soft); color:var(--blue); } .vs-row .ic .i { --s:1.1rem; }
+  .vs-row h3 { margin:0; font-size:.98rem; color:var(--blue); }
+  .vs-row .vs-more, .vs-row .vs-links { margin-top:.5rem; }
+  .vs-row p { margin:0; font-size:.92rem; line-height:1.5; }
+  @media (max-width:640px){ .vs-row { grid-template-columns:1fr; } }
+  .vs-src { margin-top:.7rem; font-size:.88rem; } .vs-src summary { cursor:pointer; font-weight:700; color:var(--blue); }
+  .vs-src ul { margin:.5rem 0 0; padding-left:1.2rem; } .vs-src li { margin:.25rem 0; }
+</style>

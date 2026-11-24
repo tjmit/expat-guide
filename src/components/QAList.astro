@@ -1,0 +1,127 @@
+---
+import QAItem from './QAItem.astro';
+import Icon from './Icon.astro';
+import { CONF_LABEL, CONF_ORIGINAL, CONF_ORDER } from '../lib/qa';
+import { topicIcon } from '../lib/icons';
+const { items, phases = [], groupByPhase = false, searchAtBottom = false } = Astro.props;
+const visaOptions = [...new Set(items.flatMap((e: any) => e.data.visas))].sort() as string[];
+const sectionOptions = [...new Set(items.map((e: any) => e.data.section))] as string[];
+const hasUnstated = items.some((e: any) => e.data.visas.length === 0);
+const useChips = !groupByPhase && sectionOptions.length > 1;
+const groups: { phase?: any; section: string; entries: any[] }[] = [];
+for (const e of items) {
+  const last = groups[groups.length - 1];
+  const ph = groupByPhase ? phases.find((p: any) => p.key === e.data.phase) : undefined;
+  if (last && last.section === e.data.section && last.phase?.key === ph?.key) last.entries.push(e);
+  else groups.push({ phase: ph, section: e.data.section, entries: [e] });
+}
+---
+<div class={`qa-wrap ${searchAtBottom ? 'bottom' : ''}`}>
+<form class={`filters ${searchAtBottom ? 'panel' : ''}`} id="filters" role="search" onsubmit="return false">
+  {searchAtBottom && <h2 class="panel-h">Looking for something specific?</h2>}
+  <div class="searchrow">
+    <span class="lead"><Icon name="search" /></span>
+    <input type="search" id="f-q" placeholder="Search these questions" aria-label="Search questions and answers" />
+  </div>
+  {useChips && (
+    <div class="chips" id="chips" role="group" aria-label="Filter by topic">
+      <button type="button" class="chip on" data-sec="">All topics</button>
+      {sectionOptions.map(s => { const ti = topicIcon(s); return <button type="button" class={`chip t-${ti.tint}`} data-sec={s}><Icon name={ti.name} />{s}</button>; })}
+    </div>
+  )}
+  <details class="more">
+    <summary>More filters</summary>
+    <div class="morerow">
+      {!useChips && (
+        <label>Topic
+          <select id="f-sec"><option value="">All</option>{sectionOptions.map(s => <option value={s}>{s}</option>)}</select></label>
+      )}
+      <label>How sure are we?
+        <select id="f-conf"><option value="">All</option>
+          {CONF_ORDER.map(c => <option value={c}>{CONF_LABEL[c]}</option>)}
+        </select></label>
+      <label>Applies to visa
+        <select id="f-visa"><option value="">Any</option>
+          {visaOptions.map(v => <option value={v}>{v}</option>)}
+          {hasUnstated && <option value="__none">Not stated in source</option>}
+        </select></label>
+      <label class="chk"><input type="checkbox" id="f-flag" /> Needs professional review only</label>
+    </div>
+    <p class="muted note-visa">Visa filter: "All" entries match every visa choice. Entries whose source did not state a visa type show as "not stated".</p>
+  </details>
+  <div class="toolrow">
+    <span class="muted" id="f-count" aria-live="polite"></span>
+    <span class="buttons">
+      <button type="button" id="b-open">Open all</button>
+      <button type="button" id="b-close">Close all</button>
+      <button type="button" id="b-reset">Reset</button>
+    </span>
+  </div>
+</form>
+
+{searchAtBottom && <h2 class="list-h" id="questions">Questions and answers you may have</h2>}
+<div id="qa-list">
+  {groups.map(g => { const ti = topicIcon(g.section); return (
+    <section class="group">
+      {g.phase && <h2 class="phase-h"><a href={g.phase.url}>{g.phase.title}</a></h2>}
+      <h2 class={`sec-h t-${ti.tint}`}><span class="ic"><Icon name={ti.name} /></span>{g.section}</h2>
+      {g.entries.map((e: any) => <QAItem entry={e} />)}
+    </section>
+  ); })}
+</div>
+<p id="no-results" class="muted" hidden>No questions match these filters. Try fewer words, or press Reset.</p>
+</div>
+
+<script is:inline>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var items = Array.prototype.slice.call(document.querySelectorAll('article.qa'));
+  var q = $('f-q'), conf = $('f-conf'), visa = $('f-visa'), selSec = $('f-sec'), flag = $('f-flag');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('#chips .chip'));
+  var secVal = '';
+  var params = new URLSearchParams(location.search);
+  q.value = params.get('q') || ''; conf.value = params.get('conf') || ''; visa.value = params.get('visa') || '';
+  secVal = params.get('topic') || ''; flag.checked = params.get('flag') === '1';
+  if (selSec) selSec.value = secVal;
+  if (conf.value || visa.value || flag.checked || (selSec && secVal)) document.querySelector('details.more').open = true;
+  function setSec(v) { secVal = v; if (selSec) selSec.value = v; chips.forEach(function (c) { c.classList.toggle('on', c.dataset.sec === v); }); }
+  function apply() {
+    var term = q.value.trim().toLowerCase(), shown = 0;
+    items.forEach(function (a) {
+      var ok = true;
+      if (term && a.dataset.text.indexOf(term) < 0) ok = false;
+      if (conf.value && a.dataset.conf !== conf.value) ok = false;
+      if (secVal && a.dataset.section !== secVal) ok = false;
+      if (flag.checked && a.dataset.flag !== '1') ok = false;
+      if (visa.value) {
+        var v = a.dataset.visas;
+        if (visa.value === '__none') { if (v !== '|') ok = false; }
+        else if (v.indexOf('|' + visa.value + '|') < 0 && v.indexOf('|All|') < 0) ok = false;
+      }
+      a.hidden = !ok; if (ok) shown++;
+    });
+    document.querySelectorAll('section.group').forEach(function (g) {
+      g.hidden = !g.querySelector('article.qa:not([hidden])');
+    });
+    $('f-count').textContent = shown + (shown === 1 ? ' question' : ' questions') + (shown === items.length ? '' : ' of ' + items.length);
+    $('no-results').hidden = shown !== 0;
+    var p = new URLSearchParams();
+    if (q.value) p.set('q', q.value); if (conf.value) p.set('conf', conf.value);
+    if (visa.value) p.set('visa', visa.value); if (secVal) p.set('topic', secVal); if (flag.checked) p.set('flag', '1');
+    var s = p.toString(); try { history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash); } catch (e) {}
+  }
+  var toList = function () { if (document.querySelector('.qa-wrap.bottom')) { var l = document.getElementById('qa-list'); if (l) l.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+  chips.forEach(function (c) { c.addEventListener('click', function () { setSec(c.dataset.sec); apply(); toList(); }); });
+  q.addEventListener('keydown', function (e) { if (e.key === 'Enter') toList(); });
+  if (selSec) selSec.addEventListener('change', function () { setSec(selSec.value); apply(); });
+  ['input', 'change'].forEach(function (ev) { $('filters').addEventListener(ev, apply); });
+  $('b-open').onclick = function () { document.querySelectorAll('article.qa:not([hidden]) details.card').forEach(function (d) { d.open = true; }); };
+  $('b-close').onclick = function () { document.querySelectorAll('#qa-list details').forEach(function (d) { d.open = false; }); };
+  $('b-reset').onclick = function () { q.value = ''; conf.value = ''; visa.value = ''; flag.checked = false; setSec(''); apply(); };
+  function openHash() {
+    var t = location.hash && document.getElementById(location.hash.slice(1));
+    if (t && t.classList.contains('qa')) { t.hidden = false; var g = t.closest('section.group'); if (g) g.hidden = false; var d = t.querySelector('details.card'); if (d) d.open = true; t.scrollIntoView(); }
+  }
+  setSec(secVal); apply(); openHash(); window.addEventListener('hashchange', openHash);
+})();
+</script>

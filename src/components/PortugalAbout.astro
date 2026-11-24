@@ -1,0 +1,101 @@
+---
+import Icon from './Icon.astro';
+const history = [
+  { y: '1179', t: 'The Pope recognises Portugal as a kingdom, after it began as a county of the Kingdom of León in 868.' },
+  { y: '1400s to 1500s', t: 'Portugal leads the Age of Discovery, sponsored by Prince Henry the Navigator. Vasco da Gama reaches India in 1498.' },
+  { y: '1755', t: 'A huge earthquake and tsunami devastates Lisbon, one of the worst on record.' },
+  { y: '1910', t: 'Portugal becomes a republic on 5 October.' },
+  { y: '1974', t: 'On 25 April the Carnation Revolution overthrows the long-running Estado Novo (New State) dictatorship.' },
+  { y: '1986', t: 'Portugal joins the European Economic Community, the forerunner of the European Union.' },
+];
+const lang = [
+  { y: '218 BC onward', t: 'Latin arrives with Roman soldiers and colonists in the west of the Iberian Peninsula. Portuguese grows out of it.' },
+  { y: '711 onward', t: 'Arabic is the administrative language of the Muslim-ruled south. Modern Portuguese keeps an estimated 400 to 800 words of Arabic origin, mostly about food, farming and crafts.' },
+  { y: '9th century', t: 'The oldest written traces appear, in Latin documents with bits of Galician-Portuguese, the common language of the north-west. Portugal becomes an independent kingdom in 1143.' },
+  { y: '1290s', t: 'King Dinis makes Portuguese the language of law and the royal chancellery, in preference to Latin, and founds the university that became Coimbra.' },
+  { y: '1500s', t: 'The first grammars are written (1536 and 1540). Sailors, traders and missionaries carry Portuguese to Africa, Asia and the Americas, and by mid-century it is a trade language in Asia and Africa.' },
+  { y: '1900s', t: 'Portugal revises its spelling in 1916. Brazil adopts those changes in 1943 and revises them again in 1970.' },
+  { y: 'Today', t: 'About 220 million people speak it. European Portuguese added a vowel sound that Brazilian Portuguese lacks, and the two raise unstressed vowels differently, so they sound noticeably different.' },
+];
+const facts = [
+  { icon: 'music', t: 'Fado', x: 'UNESCO added fado to its list of intangible cultural heritage in 2011. It describes a genre of music and poetry widely practised in Lisbon.' },
+  { icon: 'users', t: 'Singing without instruments', x: 'Cante Alentejano, vocal music without instruments from the Alentejo region (southern Portugal), was listed by UNESCO in 2014.' },
+  { icon: 'sparkles', t: 'Saudade', x: 'Britannica describes fado as expressing "saudade", the yearning, romantic side of the Portuguese character. It is a word with no neat English match, a kind of longing for something or someone far away or gone.' },
+  { icon: 'utensils', t: 'Bacalhau', x: 'Dried salted cod is considered the national dish, and it is the centrepiece of the Christmas Eve dinner (Consoada).' },
+  { icon: 'utensils', t: 'The Mediterranean diet', x: 'Portugal is one of the countries sharing UNESCO’s 2013 listing of the Mediterranean diet.' },
+];
+const year = [
+  { icon: 'flag', t: 'April 25, Freedom Day', x: 'Red carnations mark the 1974 revolution.' },
+  { icon: 'sparkles', t: 'June: Santos Populares', x: 'Street festivals in June. Lisbon celebrates St Anthony around June 12 with parades, grilled sardines and paper garlands. Porto celebrates St John around June 23, when people tap each other on the head with plastic hammers and exchange potted basil.' },
+  { icon: 'flag', t: 'June 10, Portugal Day', x: 'The national day. Britannica also lists Republic Day on October 5.' },
+  { icon: 'sparkles', t: 'Christmas', x: 'Families eat the Consoada on Christmas Eve, many attend the midnight Mass (Missa do Galo), and Bolo Rei (king cake) is a Christmas treat.' },
+  { icon: 'hourglass', t: 'New Year', x: 'One tradition is eating 12 raisins at midnight, one for each month of good luck.' },
+  { icon: 'hourglass', t: 'Holiday closures', x: 'Many businesses close on national holidays, and banks and government offices close completely. A holiday near a weekend often becomes a long "ponte" (bridge) weekend.' },
+];
+const customs = [
+  { icon: 'handshake', t: 'Greetings', x: 'A handshake is the most common greeting, and women often kiss both cheeks, starting with the right. Guides disagree on whether men do too. Say "bom dia" or "boa tarde" when you walk into a shop or waiting room.' },
+  { icon: 'utensils', t: 'Meals', x: 'A proper meal can last two to three hours, and Sunday family lunches can run longer. Coffee often marks the end.' },
+  { icon: 'list-checks', t: 'Queues', x: 'In banks, bakeries and post offices you often take a numbered ticket (a "senha"). Priority lines exist for older people, people with disabilities, pregnant women and people with babies.' },
+  { icon: 'clock', t: 'Punctuality', x: 'Socially, a few minutes late is accepted. For work and business it is seen as unprofessional, and Expatica says more than 30 minutes late is rude.' },
+  { icon: 'users', t: 'Visiting and calling', x: 'Call ahead before visiting, and avoid visiting near mealtimes. Expatica advises not phoning before 9:00, between 12:00 and 14:00, or between 20:00 and 21:00.' },
+  { icon: 'utensils', t: 'At the table', x: 'The host decides where you sit. Say "bom apetite" to start, and eating only with a fork is considered rude. The person who invited the group usually pays, though younger people more often split the bill.' },
+  { icon: 'handshake', t: 'Topics and gifts', x: 'Avoid asking about salary or who someone votes for. Do not give 13 of the same gift, which is considered bad luck, and open a gift when you receive it.' },
+  { icon: 'users', t: 'Family', x: 'Families are close. Several generations often live together, and adult children often stay home until they marry.' },
+  { icon: 'list-checks', t: 'Complaints book', x: 'Shops and restaurants keep a "Livro de Reclamações" (complaints book) that you can ask for if you have a problem. Expatica dates it to 2005.' },
+  { icon: 'languages', t: 'Language', x: 'One guide warns that speaking Spanish can feel dismissive. "Obrigado" or "obrigada" means thank you.' },
+];
+---
+<section class="pt-about" aria-label="Portugal in a nutshell">
+  <h2>Portugal in a nutshell</h2>
+  <p class="muted">A short, friendly overview from encyclopedia and expat-guide pages, not official sources. Customs vary from person to person and place to place.</p>
+
+  <h3 class="pt-sub"><Icon name="hourglass" />A quick tour of Portuguese history</h3>
+  <ul class="pt-time">
+    {history.map(h => <li><span class="yr">{h.y}</span><span>{h.t}</span></li>)}
+  </ul>
+
+  <h3 class="pt-sub"><Icon name="languages" />Where European Portuguese comes from</h3>
+  <ul class="pt-time">
+    {lang.map(h => <li><span class="yr">{h.y}</span><span>{h.t}</span></li>)}
+  </ul>
+
+  <h3 class="pt-sub"><Icon name="sparkles" />Culture and fun facts</h3>
+  <div class="pt-rows">
+    {facts.map(r => (
+      <div class="pt-row"><div class="pt-lab"><span class="ic"><Icon name={r.icon} /></span><h4>{r.t}</h4></div><p>{r.x}</p></div>
+    ))}
+  </div>
+
+  <h3 class="pt-sub"><Icon name="hourglass" />The Portuguese year</h3>
+  <div class="pt-rows">
+    {year.map(r => (
+      <div class="pt-row"><div class="pt-lab"><span class="ic"><Icon name={r.icon} /></span><h4>{r.t}</h4></div><p>{r.x}</p></div>
+    ))}
+  </div>
+
+  <h3 class="pt-sub"><Icon name="handshake" />Everyday customs to know</h3>
+  <div class="pt-rows">
+    {customs.map(r => (
+      <div class="pt-row"><div class="pt-lab"><span class="ic"><Icon name={r.icon} /></span><h4>{r.t}</h4></div><p>{r.x}</p></div>
+    ))}
+  </div>
+
+</section>
+<style is:global>
+  .pt-about { margin:1.4rem 0; background:var(--plum-soft); border-radius:20px; padding:.9rem 1.1rem 1rem; }
+  .pt-about h2 { font-size:1.15rem; margin:0 0 .2rem; color:var(--plum); }
+  .pt-about > p { margin:0 0 .6rem; font-size:.92rem; }
+  .pt-sub { display:flex; align-items:center; gap:.4rem; margin:1rem 0 .5rem; font-size:1rem; color:var(--plum); } .pt-sub .i { --s:1.1em; }
+  .pt-time { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.4rem; }
+  .pt-time li { display:grid; grid-template-columns:7.5rem minmax(0,1fr); gap:.2rem 1rem; background:var(--surface); border-radius:14px; padding:.55rem .9rem; font-size:.92rem; line-height:1.45; }
+  .pt-time .yr { font-family:var(--font-display); font-weight:700; color:var(--plum); }
+  .pt-rows { display:flex; flex-direction:column; gap:.5rem; }
+  .pt-row { display:grid; grid-template-columns:12.5rem minmax(0,1fr); gap:.4rem 1rem; align-items:start; background:var(--surface); border-radius:14px; padding:.6rem .9rem; }
+  .pt-lab { display:flex; align-items:center; gap:.6rem; }
+  .pt-lab .ic { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--plum-soft); color:var(--plum); } .pt-lab .ic .i { --s:1.1rem; }
+  .pt-row h4 { margin:0; font-size:.98rem; color:var(--plum); }
+  .pt-row p { margin:0; font-size:.92rem; line-height:1.5; }
+  .pt-src { margin-top:.8rem; font-size:.88rem; } .pt-src summary { cursor:pointer; font-weight:700; color:var(--plum); }
+  .pt-src ul { margin:.5rem 0 0; padding-left:1.2rem; } .pt-src li { margin:.25rem 0; }
+  @media (max-width:640px){ .pt-row, .pt-time li { grid-template-columns:1fr; } }
+</style>

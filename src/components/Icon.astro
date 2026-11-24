@@ -1,0 +1,5 @@
+---
+import { icon } from '../lib/icons';
+const { name, size } = Astro.props;
+---
+<span class="i" style={size ? `--s:${size}px` : undefined} set:html={icon(name)} />

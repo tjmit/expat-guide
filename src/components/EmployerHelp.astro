@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import TeacherNote from './TeacherNote.astro';
+import { EMPLOYER, EMPLOYER_EXTRA, EMPLOYER_EXTRA_NOTE } from '../lib/summaries';
+const { phaseKey, items } = Astro.props;
+const rows = (EMPLOYER[phaseKey] ?? []).map(r => ({ ...r, q: items.find((e: any) => e.data.id === r.id)?.data.question })).filter(r => r.q);
+const extra = EMPLOYER_EXTRA[phaseKey] ?? [];
+const must = rows.filter((r: any) => r.kind === 'must');
+const varies = rows.filter((r: any) => r.kind === 'varies');
+const yours = rows.filter((r: any) => r.kind === 'yours');
+---
+{(rows.length > 0 || extra.length > 0) && (
+  <section class="emp" aria-label="Teaching or coming to work in Portugal">
+    <details class="emp-d" open>
+    <summary><span class="ic hd"><Icon name="graduation-cap" /></span><h2>Teaching or coming to work in Portugal?</h2></summary>
+    <p class="muted">Some steps are your employer's job, some depend on the employer, and some stay yours. Ask HR about the middle group.</p>
+    {must.length > 0 && <h3 class="eg">Your employer has to do</h3>}
+    {must.length > 0 && <ul>
+      {must.map(r => (<li><span class="ic"><Icon name="briefcase" /></span><span><a href={`#${r.id}`}>{r.q}</a><br /><span class="muted">{r.note}</span></span></li>))}
+      {extra.map(x => (<li><span class="ic"><Icon name="briefcase" /></span><span><strong>{x.title}</strong><br /><span class="muted">{x.note}{' '}<a class="xsrc" href={x.src} rel="noopener">Source: {x.srcLabel}</a></span></span></li>))}
+    </ul>}
+    {must.length === 0 && extra.length > 0 && <h3 class="eg">Your employer has to do</h3>}
+    {must.length === 0 && extra.length > 0 && <ul>
+      {extra.map(x => (<li><span class="ic"><Icon name="briefcase" /></span><span><strong>{x.title}</strong><br /><span class="muted">{x.note}{' '}<a class="xsrc" href={x.src} rel="noopener">Source: {x.srcLabel}</a></span></span></li>))}
+    </ul>}
+    {varies.length > 0 && <h3 class="eg">Varies, so ask HR</h3>}
+    {varies.length > 0 && <ul>
+      {varies.map(r => (<li><span class="ic"><Icon name="briefcase" /></span><span><a href={`#${r.id}`}>{r.q}</a><br /><span class="muted">{r.note}</span></span></li>))}
+    </ul>}
+    {yours.length > 0 && <h3 class="eg">Still yours</h3>}
+    {yours.length > 0 && <ul>
+      {yours.map(r => (<li><span class="ic"><Icon name="briefcase" /></span><span><a href={`#${r.id}`}>{r.q}</a><br /><span class="muted">{r.note}</span></span></li>))}
+    </ul>}
+    {phaseKey === 'B2' && <p class="muted emp-note">{EMPLOYER_EXTRA_NOTE}</p>}
+    </details>
+  </section>
+)}
+{!(rows.length > 0 || extra.length > 0) && !['B5','B6'].includes(phaseKey) && <TeacherNote />}
+<style is:global>
+  .emp summary { display:flex; align-items:center; gap:.6rem; } .emp summary h2 { margin-right:auto !important; } .emp summary .hd { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--surface); color:var(--green); } .emp summary .hd .i { --s:1.1rem; }
+  .emp .eg { font-size:.9rem; margin:.7rem 0 .3rem; color:var(--green); }
+  .emp { margin:.8rem 0; background:var(--green-soft); border-radius:20px; padding:.9rem 1.1rem 1rem; }
+  .emp h2 { font-size:1.15rem; margin:0 0 .3rem; color:var(--green); }
+  .emp > p { margin:0 0 .7rem; }
+  .emp ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.6rem; }
+  .emp li { display:flex; gap:.7rem; align-items:flex-start; font-size:.95rem; line-height:1.45; }
+  .emp li .ic { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--surface); color:var(--green); } .emp li .ic .i { --s:1.1rem; }
+  .emp li a { color:var(--ink); font-weight:700; }
+  .emp li a.xsrc { font-weight:600; text-decoration:underline; color:var(--green); } .emp .emp-note { margin:.8rem 0 0; font-size:.9rem; }
+  .badge.emp-b { background:var(--green-soft); color:var(--green); }
+</style>

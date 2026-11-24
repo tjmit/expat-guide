@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+---
+<section class="lcheck" aria-label="Check your Portuguese">
+  <div class="lc-head"><span class="ic"><Icon name="languages" /></span><h2>Check your Portuguese</h2></div>
+  <p>Not sure where you are? Try the official sample papers from the CIPLE exam, the basic (A2) Portuguese test run by CAPLE at the University of Lisbon. Work through them, then use the answer key to see how you did. The real exam passes at 55%.</p>
+  <ul class="lc-links">
+    <li><a class="lc-btn" href="https://caple.letras.ulisboa.pt/files/exemplos/CIPLE_CL_PIE.pdf" target="_blank" rel="noopener noreferrer"><Icon name="file-text" />Reading and writing</a></li>
+    <li><a class="lc-btn" href="https://caple.letras.ulisboa.pt/files/exemplos/CIPLE_CO.pdf" target="_blank" rel="noopener noreferrer"><Icon name="file-text" />Listening paper</a></li>
+    <li><a class="lc-btn" href="https://caple.letras.ulisboa.pt/audio/CIPLE_CO_EXEMPLO.mp3" target="_blank" rel="noopener noreferrer"><Icon name="message-circle" />Listening audio</a></li>
+    <li><a class="lc-btn" href="https://caple.letras.ulisboa.pt/files/exemplos/CIPLE_CHAVE.pdf" target="_blank" rel="noopener noreferrer"><Icon name="circle-check" />Answer key</a></li>
+  </ul>
+  <p class="muted lc-note">There is no speaking sample. If these feel too hard, see the <a href="#b5-a1">free courses for newcomers</a>. More about the exam is in <a href="#b5-a2">the CIPLE answer below</a>.</p>
+</section>
+<style is:global>
+  .lcheck { margin:1.4rem 0; background:var(--plum-soft); border-radius:20px; padding:.9rem 1.1rem 1rem; }
+  .lc-head { display:flex; align-items:center; gap:.6rem; margin-bottom:.3rem; }
+  .lc-head h2 { font-size:1.15rem; margin:0; color:var(--plum); }
+  .lc-head .ic { display:grid; place-items:center; width:2rem; height:2rem; border-radius:50%; background:var(--surface); color:var(--plum); } .lc-head .ic .i { --s:1.1rem; }
+  .lcheck p { margin:.2rem 0 .8rem; }
+  .lc-links { list-style:none; margin:0 0 .6rem; padding:0; display:flex; flex-wrap:wrap; gap:.5rem; }
+  .lc-btn { display:inline-flex; align-items:center; gap:.4rem; background:var(--plum); color:var(--bg); text-decoration:none; font-weight:800; font-size:.95rem; padding:.5rem .9rem; border-radius:999px; } .lc-btn .i { --s:1.1em; }
+  .lc-btn:hover { filter:brightness(1.1); }
+  .lcheck .lc-note { margin:.4rem 0 0; font-size:.9rem; }
+</style>

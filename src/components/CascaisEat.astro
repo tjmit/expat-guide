@@ -1,0 +1,97 @@
+---
+import Icon from './Icon.astro';
+const TO = 'https://www.timeout.com/cascais/news/';
+const kM = TO + 'kappo-wins-much-desired-michelin-star-031026';
+const r26 = TO + 'after-its-michelin-star-kappo-now-earns-a-repsol-guide-sun-041326';
+const r25 = TO + 'in-the-new-repsol-guide-cascais-has-six-distinguished-restaurants-041025';
+const MI = 'https://guide.michelin.com/th/th/lisboa-region/cascais/restaurant/';
+const list = [
+  { n: 'Kappo', k: 'Japanese omakase, Cascais', a: 'Michelin star (March 2026) and one Repsol Sun (April 2026).', u: kM, m: MI + 'kappo-1196985' },
+  { n: 'Izakaya', k: 'Japanese izakaya, Cascais', a: 'Repsol Guide restaurant (2026).', u: r26, m: MI + 'izakaya-1204417' },
+  { n: 'Sult', k: 'Italian, Cascais', a: 'Recommended by Repsol (2025). Time Out also reports a Michelin recommendation.', u: r25, m: MI + 'sult-cascais' },
+];
+const F='https://cdn.fodors.com/world/europe/portugal/side-trips-from-lisbon/places/the-estoril-coast/cascais-and-boca-do-inferno/restaurants';
+const CT='https://theculturetrip.com/europe/portugal/articles/the-10-best-restaurants-in-cascais-portugal';
+const CP='https://www.cascais-portugal.com/Guides/where-to-eat-in-cascais.html';
+const OL='https://olivemagazine.com/travel/europe/cascais-foodie-guide';
+const TL='https://www.timeout.com/lisbon/restaurants/the-best-restaurants-in-cascais';
+const est = [
+  { n: 'Jackpot', k: 'Portuguese seafood, opposite Casino Estoril', a: 'A long-standing, old-school seafood restaurant with a terrace. It also serves meat and is a good late-night option.', u: 'https://www.timeout.com/cascais/restaurants/the-best-restaurants-in-estoril' },
+  { n: 'Estoril Mandarim', k: 'Chinese', a: 'Time Out calls it one of the most authentic Chinese restaurants in Greater Lisbon, known for lunchtime dim sum and Peking duck.', u: 'https://www.timeout.com/cascais/restaurants/the-best-restaurants-in-estoril' },
+  { n: 'Dona Ana Baiana', k: 'Brazilian, Galerias do Estoril', a: 'Home-style dishes from Bahia, such as banana moqueca and prawn acarajé, in a small space.', u: 'https://www.timeout.com/cascais/restaurants/the-best-restaurants-in-estoril' },
+  { n: 'Lamassa', k: 'Italian', a: 'Fresh pasta made daily by the Italian owner, with a short menu of pastas and tiramisu. Takeaway is available.', u: 'https://www.timeout.com/cascais/restaurants/the-best-restaurants-in-estoril' },
+  { n: 'Garrett do Estoril', k: 'Bakery, Avenida de Nice 54', a: 'A bakery founded in 1934, known for pastries such as maravilhas, parras and jesuítas.', u: 'https://www.timeout.com/cascais/restaurants/the-best-restaurants-in-estoril' },
+];
+const pop = [
+  { n: 'Cantina Clandestina', k: 'Tapas and cocktails, Rua Amarela (Yellow Street)', a: 'Tapas, light meals and cocktails. A Fodor\'s Choice pick.', u: F },
+  { n: 'Hífen', k: 'Sharing plates and seafood, with bay views', a: 'Sharing plates, salads, seafood and cocktails. Named by Fodor\'s, Culture Trip and Time Out.', u: CT },
+  { n: 'Restaurante Pereira', k: 'Traditional Portuguese, Cascais', a: 'Dishes from every region of Portugal and rice dishes, described as packed with locals. Closed Mondays per Fodor\'s.', u: F },
+  { n: 'Nicolau Cascais', k: 'Brunch and all-day cafe, Rua Freitas Reis', a: 'An all-day cafe and brunch spot with a terrace and a bar. Time Out lists it open Monday to Saturday in a 2025 article, but its hours differ from an earlier 2023 listing, so check before you go.', u: 'https://www.timeout.com/cascais/news/nicolau-cascais-celebrates-two-years-with-new-menu-updates-050525' },
+  { n: 'Moules & Gin', k: 'Mussels and gin, Rua Nova da Alfarrobeira', a: 'The menu is mostly mussels served in different ways, with moules et frites (mussels and fries) as the main dish, plus gin. Time Out\'s 2021 listing says Tuesday to Sunday, 12:30 to midnight.', u: 'https://www.timeout.com/cascais/restaurants/moules-gin' },
+  { n: 'Soya Noodle Bar', k: 'Asian, Rua Alexandre Herculano', a: 'A small chain of Asian restaurants with a terrace, serving baos, ramens, bibimbaps and pad thais. Time Out lists it open every day from 12:00 to 23:00.', u: 'https://www.timeout.com/cascais/restaurants/soya-noodle-bar' },
+  { n: 'Gandhi Palace', k: 'Indian, Rua Frederico Arouca', a: 'Indian dishes with a vegetarian menu that can be made vegan. Spinach guide lists it open daily, with hours varying by day.', u: 'https://spinach.guide/venues/gandhi-palace-41660/' },
+  { n: 'Confraria', k: 'Japanese, Rua Luís Xavier Palmeirim', a: 'Time Out calls it one of the oldest Japanese restaurants in Cascais, with fusion-inspired and some traditional dishes. Its 2021 listing says daily, noon to midnight.', u: 'https://www.timeout.com/cascais/restaurants/confraria' },
+  { n: 'Bodega Brava', k: 'Tapas, Avenida Valbom', a: 'A traditional tapas bar inspired mainly by Catalan cooking. Time Out lists it open Tuesday to Sunday.', u: 'https://www.timeout.com/cascais/restaurants/bodega-brava' },
+  { n: 'O Cantinho da Belinha', k: 'Seafood, Avenida Vasco da Gama, near the Museu do Mar', a: 'Known as the "House of Fishermen": Time Out says the fish comes straight from the boats. Good for sardines in summer and local fish all year, with a sheltered courtyard. Time Out (2021) lists Tuesday to Saturday.', u: 'https://www.timeout.com/cascais/restaurants/o-cantinho-da-belinha' },
+  { n: 'O Viriato', k: 'Traditional Portuguese, Avenida Vasco da Gama', a: 'Traditional Portuguese cooking, with grilled fish and sardines and bacalhau (salt cod) on its listings. Tripadvisor shows it closed on Tuesdays.', u: 'https://www.tripadvisor.com/Restaurant_Review-g189154-d3239435-Reviews-O_Viriato_Cascais-Cascais_Lisbon_District_Central_Portugal.html' },
+  { n: 'Il Siciliano', k: 'Pizzeria, Rua do Poço Novo', a: 'Wood-fired pizza and fresh pasta, owned by someone from Sicily, with gluten-free options.', u: 'https://wanderlog.com/place/details/1397152' },
+  { n: 'El Señor', k: 'Mexican, Travessa Afonso Sanches', a: 'Mexican food and cocktails, with sea bass tacos, churros and guava margaritas. One listing calls it tapas and Spanish, so check the menu.', u: 'https://wanderlog.com/place/details/1264405/el-se%C3%B1or' },
+  { n: 'Bougain', k: 'Restaurant and garden bar, Avenida Valbom', a: 'In a century-old family house, with Portuguese, French and Italian classics. Chef Diana Roque.', u: 'https://www.visitcascais.com/partners/bougain' },
+  { n: 'Corleone', k: 'Italian, on the terrace of the Villa Cascais hotel', a: 'Antipasti, fresh pasta and main courses by a chef from Puglia. The owner says it is not a pizzeria.', u: 'https://www.timeout.com/lisbon/restaurants/corleone' },
+  { n: 'House of Wonders', k: 'Vegetarian and vegan, old town', a: 'A vegetarian and vegan restaurant in the old town with a rooftop terrace. Named by Fodor\'s, Culture Trip and Olive.', u: F },
+];
+---
+<section id="cascais-eat" class="eat" aria-label="Where to eat in Cascais">
+  <h2>Where to eat</h2>
+  <p class="muted">This list covers restaurants in the town of Cascais itself, and follows restaurant guides, not diner ratings: the Michelin Guide and the Repsol Guide, as reported by Time Out Cascais. Tap a name for the article. Awards change each year, and Michelin pages may open in Thai (use the page's language menu).</p>
+  <div class="eat-rows">
+    {list.map(r => (
+      <div class="eat-row">
+        <div class="eat-lab"><span class="ic"><Icon name="utensils" /></span><div><h3><a href={r.u} target="_blank" rel="noopener noreferrer">{r.n}</a></h3><span class="muted">{r.k}</span></div></div>
+        <p>{r.a}{r.m && <>{' '}<a class="eat-m" href={r.m} target="_blank" rel="noopener noreferrer">Michelin Guide page</a></>}</p>
+      </div>
+    ))}
+  </div>
+  <h2 class="eat-h2">Popular and casual (not Michelin)</h2>
+  <p class="muted">Everyday favorites from travel-guide articles (links on each name), not diner ratings. Prices and opening days change, so check before you go.</p>
+  <div class="eat-rows">
+    {pop.map(r => (
+      <div class="eat-row">
+        <div class="eat-lab"><span class="ic"><Icon name="utensils" /></span><div><h3><a href={r.u} target="_blank" rel="noopener noreferrer">{r.n}</a></h3><span class="muted">{r.k}</span></div></div>
+        <p>{r.a}</p>
+      </div>
+    ))}
+  </div>
+
+  <h2 class="eat-h2">In Estoril (a separate town next door)</h2>
+  <p class="muted">Estoril is the next town along the coast, a short train ride from Cascais. These come from one Time Out article (October 2026), so check hours before you go.</p>
+  <div class="eat-rows">
+    {est.map(r => (
+      <div class="eat-row">
+        <div class="eat-lab"><span class="ic"><Icon name="utensils" /></span><div><h3><a href={r.u} target="_blank" rel="noopener noreferrer">{r.n}</a></h3><span class="muted">{r.k}</span></div></div>
+        <p>{r.a}</p>
+      </div>
+    ))}
+  </div>
+
+  <p class="fork-line">Want ratings from diners and online booking? <a href="https://www.thefork.com/" target="_blank" rel="noopener noreferrer">TheFork</a> is a free restaurant booking app that says its reviews come only from people who booked and ate there.</p>
+</section>
+<style is:global>
+  .eat { margin:1.4rem 0; background:var(--gold-soft); border-radius:20px; padding:.9rem 1.1rem 1rem; }
+  .eat .eat-h2 { margin:1.1rem 0 .2rem; }
+  .eat h2 { font-size:1.15rem; margin:0 0 .2rem; color:var(--gold-ink); }
+  .eat > p { margin:0 0 .7rem; font-size:.92rem; }
+  .eat-rows { display:flex; flex-direction:column; gap:.5rem; }
+  .eat-row { display:grid; grid-template-columns:15rem minmax(0,1fr); gap:.4rem 1rem; align-items:center; background:var(--surface); border-radius:14px; padding:.55rem .9rem; }
+  .eat-lab { display:flex; align-items:center; gap:.6rem; }
+  .eat-lab .ic { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--gold-soft); color:var(--gold-ink); } .eat-lab .ic .i { --s:1.1rem; }
+  .eat-lab h3 { margin:0; font-size:.98rem; } .eat-lab h3 a { color:var(--gold-ink); }
+  .eat-lab .muted { font-size:.82rem; }
+  .eat-row p { margin:0; font-size:.92rem; line-height:1.45; }
+  .eat .eat-m { font-size:.82rem; white-space:nowrap; }
+  .eat .eat-note { margin:.6rem 0 0; font-size:.85rem; }
+  .fork-line { margin:.8rem 0 0; font-size:.92rem; }
+  .eat-btn { display:inline-flex; align-items:center; gap:.4rem; background:var(--gold-ink); color:var(--bg); text-decoration:none; font-weight:800; padding:.5rem 1rem; border-radius:999px; margin:.15rem .2rem; } .eat-btn .i { --s:1.1em; }
+  .eat-btn.alt { background:transparent; color:var(--gold-ink); box-shadow:inset 0 0 0 2px var(--gold-ink); }
+  @media (max-width:640px){ .eat-row { grid-template-columns:1fr; } }
+</style>

@@ -1,0 +1,10 @@
+---
+import Icon from './Icon.astro';
+const { big = false, placeholder = 'What do you need help with?' } = Astro.props;
+---
+<form class={`bigsearch ${big ? 'big' : ''}`} action="/all" method="get" role="search">
+  <label class="sr" for="home-q">Search all questions</label>
+  <span class="lead"><Icon name="search" /></span>
+  <input id="home-q" type="search" name="q" placeholder={placeholder} autocomplete="off" />
+  <button type="submit">Search</button>
+</form>

@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { CONF_CLASS, CONF_LABEL, CONF_ORIGINAL, CONF_ICON, STALE_DAYS, ageDays, md, splitBody, stripMd } from '../lib/qa';
+import { topicIcon } from '../lib/icons';
+import { EMPLOYER_IDS } from '../lib/summaries';
+const { entry } = Astro.props;
+const d = entry.data;
+const { brief, citations } = splitBody(entry.body ?? '');
+const stale = ageDays(d.checked_on) > STALE_DAYS;
+const ti = topicIcon(d.section);
+const searchText = [d.question, d.badge, d.section, d.tags.join(' '), brief, citations].join(' ').toLowerCase();
+---
+<article class="qa" id={d.id}
+  data-conf={d.confidence} data-visas={['', ...d.visas, ''].join('|')} data-section={d.section}
+  data-flag={d.review ? '1' : '0'} data-text={searchText}>
+  <details class={`card t-${ti.tint}`}>
+    <summary>
+      <span class="ic"><Icon name={ti.name} /></span>
+      <span class="qbody">
+        <span class="q">{d.question}</span>
+        <span class="peek" aria-hidden="true">{stripMd(brief)}</span>
+        <span class="badges">
+          <span class={`badge ${CONF_CLASS[d.confidence]}`}><Icon name={CONF_ICON[d.confidence]} />{CONF_LABEL[d.confidence]}</span>
+          {d.badge && <span class="badge info"><Icon name="plane" />{d.badge}</span>}
+          {EMPLOYER_IDS.has(d.id) && <span class="badge emp-b"><Icon name="briefcase" />Your employer may help</span>}
+        </span>
+      </span>
+      <span class="chev"><Icon name="chevron-down" /></span>
+    </summary>
+    <div class="answer">
+      <div class="brief" set:html={md(brief)} />
+      <details class="cit">
+        <summary>Sources and details</summary>
+        <div class="cit-body">
+          <p class="meta">
+            <a class="anchor" href={`#${d.id}`}>Question {d.label}</a>
+            <span class="tag">Label in source: {CONF_ORIGINAL[d.confidence]}</span>
+            {d.visas.length > 0
+              ? d.visas.map((v: string) => <span class="tag">{v}</span>)
+              : <span class="tag dim">visa type not stated</span>}
+            <span class={`muted ${stale ? 'stale-text' : ''}`}>checked {d.checked_on}{stale && ' (due for re-check)'}</span>
+            {d.review && <span class="flag">Professional review: {d.review}</span>}
+          </p>
+          <p class="muted why">{d.confidence_note ? d.confidence_note : `Source label: ${CONF_ORIGINAL[d.confidence]}.`}</p>
+          <div set:html={md(citations)} />
+          {d.visa_note && <p class="muted"><strong>Applies to:</strong> {d.visa_note}</p>}
+        </div>
+      </details>
+    </div>
+  </details>
+</article>

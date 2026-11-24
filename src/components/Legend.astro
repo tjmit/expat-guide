@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import { CONF_CLASS, CONF_LABEL, CONF_ICON } from '../lib/qa';
+const rows: [string, string][] = [
+  ['VERIFIED', 'We read the official source and it matches.'],
+  ['PROBABLY TRUE', 'An official or reliable summary says so, but we have not read the full legal text.'],
+  ['UNVERIFIED', 'Sounds plausible, but we could not confirm it. Do not rely on it.'],
+];
+---
+<details class="legend" open={Astro.props.open}>
+  <summary>
+    <span class="lg-title">How sure are we?</span>
+    {rows.map(([k]) => <span class={`badge ${CONF_CLASS[k]}`}><Icon name={CONF_ICON[k]} />{CONF_LABEL[k]}</span>)}
+    <span class="lg-more">What do these mean?</span>
+  </summary>
+  <ul>
+    {rows.map(([k, t]) => <li><span class={`badge ${CONF_CLASS[k]}`}><Icon name={CONF_ICON[k]} />{CONF_LABEL[k]}</span> {t}</li>)}
+  </ul>
+</details>

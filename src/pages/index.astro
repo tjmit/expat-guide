@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SearchBox from '../components/SearchBox.astro';
+import { getQA } from '../lib/qa';
+import { PHASE_ICON } from '../lib/icons';
+const qa = await getQA();
+const count = (k: string) => qa.filter(e => e.data.phase === k).length;
+const phases = [
+  { tone: 'blue', label: 'Before leaving the US', key: 'B1', slug: 'before-leaving' },
+  { tone: 'gold', label: 'First 90 days', key: 'B2', slug: 'first-90-days' },
+  { tone: 'red', label: 'Ongoing US obligations', key: 'B3', slug: 'us-obligations' },
+  { tone: 'green', label: 'Renewals and citizenship', key: 'B4', slug: 'renewals-citizenship' },
+  { tone: 'plum', label: 'Language and culture', key: 'B5', slug: 'language-culture' },
+  { tone: 'teal', label: 'Living in Cascais', key: 'B6', slug: 'cascais' },
+];
+// Photo: Michael Gaylard, CC BY 4.0, Wikimedia Commons. Local copy in public/.
+---
+<Base title="Home">
+  <div class="home">
+    <header class="hd">
+      <h1>Moving to Portugal?</h1>
+      <p class="lede">Teaching or coming to work in Portugal?<br />Here are some questions and answers to help.</p>
+    </header>
+    <h2 class="where">Where are you in your move?</h2>
+    <p class="sub">Tap a circle to find your answers.</p>
+    <div class="stage">
+      {phases.map(p => (
+        <a class={`circle ${p.tone} k-${p.key}`} href={`/phase/${p.slug}`}>
+          <span class="pic"><Icon name={PHASE_ICON[p.key]} /></span>
+          <span class="h2">{p.label}</span>
+          <span class="count">{count(p.key)} questions</span>
+          <span class="tapme">Tap to open <Icon name="arrow-right" /></span>
+        </a>
+      ))}
+      <div class="hero">
+        <div class="photo"><img src="/pena-palace-hero.jpg" width="720" height="720" alt="Close-up of Pena Palace in Sintra: red clock tower, red and yellow walls and a blue sky" /></div>
+      </div>
+    </div>
+    <section class="findit">
+      <h2>What do you need help with?</h2>
+      <p class="sub">Or search every question by a word, like NIF or visa.</p>
+      <SearchBox big placeholder="Try NIF, visa, taxes" />
+    </section>
+    <p class="credit">Pena Palace, Sintra. Photo by Michael Gaylard, <a href="https://creativecommons.org/licenses/by/4.0" rel="noopener">CC BY 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Pena_Palace,_Sintra,_Portugal_-_Tourists_and_Architecture_(55256593163).jpg" rel="noopener">Wikimedia Commons</a> (cropped).</p>
+  </div>
+</Base>
+<style is:global>
+  main:has(.home) { max-width: 64rem; }
+.home{--c-blue:#1f4e8c;--c-gold:#9a6a00;--c-red:#a9352a;--c-green:#2d6a4f;--c-teal:#0f6b73;--c-plum:#6a3f8e;--on-color:#fff}
+@media (prefers-color-scheme:dark){.home{--c-blue:#3d73bd;--c-gold:#b07d0c;--c-red:#c04a3d;--c-green:#3d8466;--c-teal:#1f8a94;--c-plum:#8556ad}}
+.home .hd{text-align:center;max-width:44rem;margin:.6rem auto 2rem}
+.home h1{font-size:clamp(2.2rem,7vw,3.4rem);line-height:1.1;margin:0 0 .6rem;text-wrap:balance}
+.home .lede{margin:0;color:var(--muted);font-size:1.15rem}
+/* h2.where defined below */
+.home .sub{text-align:center;color:var(--muted);margin:0 0 1.4rem;font-size:1.05rem}
+.home .findit{text-align:center;margin:2.8rem auto 0;padding:1.6rem 1rem;background:var(--blue-soft);border-radius:28px;max-width:44rem}.home .findit h2{margin:0 0 .5rem;font-size:1.5rem}.home .findit .sub{margin:0 0 1.1rem}
+
+.home .where{text-align:center;font-size:clamp(1.6rem,5vw,2.1rem);margin:0 0 .4rem}
+.home .stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;justify-items:center;margin:0 auto;max-width:520px}
+.home .hero{order:-1;grid-column:1/-1;width:min(56vw,240px)}
+.home .photo{aspect-ratio:1;border-radius:50%;overflow:hidden;border:7px solid var(--surface);box-shadow:0 14px 40px var(--shadow);background:#9cc3e6}
+.home .photo img{width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+.home .circle{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;aspect-ratio:1;width:100%;border-radius:50%;padding:9%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.18),transparent 60%),var(--tone);color:var(--on-color);text-decoration:none;box-shadow:0 8px 22px var(--shadow);transition:transform .15s ease,box-shadow .15s ease}
+.home .circle:hover{transform:translateY(-4px)}
+.home .pic{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(255,255,255,.22);margin-bottom:.35rem}.home .pic .i{--s:1.4rem}
+.home .phase{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.92;font-weight:800}
+.home .h2{font-family:var(--font-display);font-weight:600;font-size:clamp(.92rem,4.2vw,1.3rem);line-height:1.15;margin:.15rem 0 .5rem;text-wrap:balance}
+.home .tapme{display:inline-flex;align-items:center;gap:.3rem;margin-top:.5rem;font-size:.8rem;font-weight:800}.home .tapme .i{--s:1em}
+.home .circle:hover .tapme .i{transform:translateX(3px)}
+.home .count{font-size:.78rem;font-weight:800;background:rgba(255,255,255,.22);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.home .blue{--tone:var(--c-blue)}.home .gold{--tone:var(--c-gold)}.home .red{--tone:var(--c-red)}.home .green{--tone:var(--c-green)}.home .teal{--tone:var(--c-teal)}.home .plum{--tone:var(--c-plum)}
+.home .credit{font-size:.8rem;color:var(--muted);text-align:center;margin:1.6rem auto 0;max-width:560px}.home .credit a{color:inherit}
+@media (max-width:480px){.home .count{display:none}.home .tapme{margin-top:.4rem}.home .circle{padding:7%}}
+@media (min-width:900px){
+ .home .stage{grid-template-columns:236px 400px 236px;gap:20px 24px;max-width:none;justify-content:center;align-items:center}
+ .home .hero{order:0;grid-column:2;grid-row:1/4;width:100%}
+ .home .circle{width:236px}
+ .home .k-B1{grid-column:1;grid-row:1}.home .k-B3{grid-column:1;grid-row:2}.home .k-B5{grid-column:1;grid-row:3}
+ .home .k-B2{grid-column:3;grid-row:1}.home .k-B4{grid-column:3;grid-row:2}.home .k-B6{grid-column:3;grid-row:3}
+}
+@media (prefers-reduced-motion:reduce){.home .circle{transition:none}.home .circle:hover{transform:none}}
+</style>

@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+const rows = [
+  { icon: 'shopping-cart', t: 'Auchan', x: 'The big supermarket in Cascais, a hypermarket rebuilt in 2022. ESM Magazine lists a cafeteria and restaurants, a rooftop with sea views, fresh and organic products, a wine cellar, a bulk section, home goods and a pet area, plus one-day delivery and a Drive pick-up service. I did not find the address or hours.' },
+  { icon: 'package', t: 'Bioshop Cascais (organic)', x: 'A health food shop at Avenida 25 de Abril 672. Directory listings (HappyCow, Foursquare and a Portuguese business directory) describe it as a health food store or supermarket. I could not open them, so I have no details on what it stocks or its hours. Check the listing or visit.' },
+  { icon: 'utensils', t: 'Gleba', x: 'A bakery at Rua José Carvalho Araújo 236. Time Out says it sells 26 types of slow-fermented natural bread made with grain from small farmers, plus stone-milled flour, nut creams, and olive oils, chocolates and beers from partners. Its 2022 listing says daily 8:00 to 20:30.' },
+  { icon: 'shopping-cart', t: 'Maitrê Renard (cheese)', x: 'A cheese shop in the Mercado da Vila, at Rua Padre Moisés da Silva 29. Time Out says it sells cheeses from small producers, mainly French, plus natural wines, mustards, jams, olives and foie gras, and "you won\'t find any supermarket products here". Its 2023 listing has varying hours and does not list Tuesday.' },
+];
+---
+<section id="cascais-groceries" class="visit groc" aria-label="Grocery shopping in Cascais">
+  <h2>Grocery shopping</h2>
+  <p class="muted">Where residents buy food, from travel and business guides. Hours change, so check before you go.</p>
+  <div class="vs-grid">
+    {rows.map(r => (
+      <div class="vs-row">
+        <div class="vs-lab"><span class="ic"><Icon name={r.icon} /></span><h3>{r.t}</h3></div>
+        <div><p>{r.x}</p></div>
+      </div>
+    ))}
+  </div>
+</section>
