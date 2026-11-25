@@ -21,7 +21,7 @@ const items = await Promise.all(Object.entries(meta as Record<string, any>).filt
           <a href={full.src} data-cap={[m.caption, m.credit, m.license].filter(Boolean).join(' · ')} data-alt={m.alt}>
             <img src={thumb.src} width="300" height="300" alt={m.alt} loading="lazy" decoding="async" />
           </a>
-          <span class="cap">{m.caption}</span>
+          {m.caption && <span class="cap">{m.caption}</span>}
           {(m.credit || m.license) && <span class="cr">{m.credit}{m.license && <> · {m.source ? <a href={m.source} rel="noopener">{m.license}</a> : m.license}</>}</span>}
         </li>
       ))}
