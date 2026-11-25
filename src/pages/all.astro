@@ -1,12 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import JumpTo from '../components/JumpTo.astro';
 import QAList from '../components/QAList.astro';
 import { getPhases, getQA } from '../lib/qa';
 const phases = await getPhases();
 const items = await getQA();
 ---
 <Base title="Search all questions" wide>
-  <h1>Search all questions</h1>
+  <h1 id="top">Search all questions</h1>
   <p class="muted">{items.length} questions across {phases.length} topics.</p>
+  <JumpTo links={phases.map((p: any) => ({ href: '#ph-' + p.key, label: p.title }))} />
   <QAList items={items} phases={phases} groupByPhase />
 </Base>

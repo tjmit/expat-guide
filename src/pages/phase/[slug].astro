@@ -13,9 +13,10 @@ import CascaisSchools from '../../components/CascaisSchools.astro';
 import PortugalAbout from '../../components/PortugalAbout.astro';
 import CascaisAbout from '../../components/CascaisAbout.astro';
 import EmployerHelp from '../../components/EmployerHelp.astro';
+import JumpTo from '../../components/JumpTo.astro';
 import QAList from '../../components/QAList.astro';
 import { getCollection } from 'astro:content';
-import { getPhases, getQA, md } from '../../lib/qa';
+import { getPhases, getQA, md, slugify } from '../../lib/qa';
 import { PHASE_ICON, PHASE_TONE } from '../../lib/icons';
 
 export async function getStaticPaths() {
@@ -34,6 +35,9 @@ export async function getStaticPaths() {
 const { phase, phases, items, notes } = Astro.props;
 // the source file's own heading is replaced by the page title
 const intro = phase.intro.replace(/^# .*\n/, '').trim();
+const sections = [...new Set(items.map((e: any) => e.data.section))] as string[];
+const extra = phase.key === 'B5' ? [{ href: '#check-portuguese', label: 'Check your Portuguese' }, { href: '#portugal-nutshell', label: 'Portugal in a nutshell' }] : [];
+const jumpLinks = [...extra, ...sections.map(s => ({ href: '#' + slugify(s), label: s }))];
 const tone = PHASE_TONE[phase.key];
 ---
 <Base title={phase.title} wide>
@@ -48,19 +52,15 @@ const tone = PHASE_TONE[phase.key];
     </div>
   </section>
   {phase.key === 'B6' && (
-    <nav class="jump" aria-label="Jump to a section">
-      <strong>Jump to:</strong>
-      <a href="#cascais-about">Cascais at a glance</a>
-      <a href="#cascais-market">Mercado da Vila</a>
-      <a href="#cascais-visit">Places to visit</a>
-      <a href="#cascais-eat">Where to eat</a>
-      <a href="#cascais-groceries">Groceries</a>
-      <a href="#cascais-buses">Buses</a>
-      <a href="#sintra-getting-around">Getting around Sintra</a>
-      <a href="#cascais-schools">International schools</a>
-      <a href="#questions">Questions and answers</a>
-    </nav>
+    <JumpTo links={[
+      { href: '#cascais-about', label: 'Cascais at a glance' }, { href: '#cascais-market', label: 'Mercado da Vila' },
+      { href: '#cascais-visit', label: 'Places to visit' }, { href: '#cascais-eat', label: 'Where to eat' },
+      { href: '#cascais-groceries', label: 'Groceries' }, { href: '#cascais-buses', label: 'Buses' },
+      { href: '#sintra-getting-around', label: 'Getting around Sintra' }, { href: '#cascais-schools', label: 'International schools' },
+      { href: '#questions', label: 'Questions and answers' },
+    ]} />
   )}
+  {phase.key !== 'B6' && jumpLinks.length > 1 && <JumpTo links={jumpLinks} />}
   <EmployerHelp phaseKey={phase.key} items={items} />
   {phase.key !== 'B6' && <PhaseSummary phaseKey={phase.key} items={items} />}
   {phase.key === 'B6' && <CascaisAbout />}
@@ -84,8 +84,6 @@ const tone = PHASE_TONE[phase.key];
   .phase-hero h1 { color:#fff; margin:.1rem 0; font-size:clamp(1.6rem,5.5vw,2.2rem); } .phase-hero p { margin:0; opacity:.92; }
   .phase-hero .pico { display:grid; place-items:center; flex:none; width:4rem; height:4rem; border-radius:50%; background:rgba(255,255,255,.22); } .phase-hero .pico .i { --s:2.2rem; }
   .phase-hero .back { color:#fff; font-size:.85rem; font-weight:700; opacity:.9; }
-  .jump { display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .5rem; margin:.4rem 0 1rem; font-size:.9rem; } .jump a { background:var(--teal-soft); color:var(--teal); border-radius:999px; padding:.25rem .7rem; font-weight:700; text-decoration:none; } .jump strong { margin-right:.2rem; }
-  .totop { margin:.5rem 0 0; text-align:right; font-size:.85rem; } html { scroll-behavior:smooth; } section[id], h2[id] { scroll-margin-top:.8rem; }
   .behind { font-size:1.1rem; margin-top:2.5rem; color:var(--muted); }
   @media (max-width:600px){ .phase-hero { padding:1rem; gap:.8rem; } .phase-hero .pico { width:3rem; height:3rem; } .phase-hero .pico .i { --s:1.6rem; } }
 </style>

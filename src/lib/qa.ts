@@ -40,3 +40,5 @@ export async function getQA() {
   const all = await getCollection('qa');
   return all.sort((a, b) => a.data.phase.localeCompare(b.data.phase) || a.data.order - b.data.order);
 }
+
+export const slugify = (s: string) => 's-' + s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

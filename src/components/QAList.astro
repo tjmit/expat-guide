@@ -1,19 +1,24 @@
 ---
 import QAItem from './QAItem.astro';
 import Icon from './Icon.astro';
-import { CONF_LABEL, CONF_ORIGINAL, CONF_ORDER } from '../lib/qa';
+import { slugify, CONF_LABEL, CONF_ORIGINAL, CONF_ORDER } from '../lib/qa';
 import { topicIcon } from '../lib/icons';
 const { items, phases = [], groupByPhase = false, searchAtBottom = false } = Astro.props;
 const visaOptions = [...new Set(items.flatMap((e: any) => e.data.visas))].sort() as string[];
 const sectionOptions = [...new Set(items.map((e: any) => e.data.section))] as string[];
 const hasUnstated = items.some((e: any) => e.data.visas.length === 0);
 const useChips = !groupByPhase && sectionOptions.length > 1;
-const groups: { phase?: any; section: string; entries: any[] }[] = [];
+const groups: { id?: string; phase?: any; section: string; entries: any[] }[] = [];
 for (const e of items) {
   const last = groups[groups.length - 1];
   const ph = groupByPhase ? phases.find((p: any) => p.key === e.data.phase) : undefined;
   if (last && last.section === e.data.section && last.phase?.key === ph?.key) last.entries.push(e);
   else groups.push({ phase: ph, section: e.data.section, entries: [e] });
+}
+const seen = new Set<string>();
+for (const g of groups) {
+  const id = groupByPhase ? (g.phase ? 'ph-' + g.phase.key : '') : slugify(g.section);
+  if (id && !seen.has(id)) { seen.add(id); g.id = id; }
 }
 ---
 <div class={`qa-wrap ${searchAtBottom ? 'bottom' : ''}`}>
@@ -62,10 +67,11 @@ for (const e of items) {
 {searchAtBottom && <h2 class="list-h" id="questions">Questions and answers you may have</h2>}
 <div id="qa-list">
   {groups.map(g => { const ti = topicIcon(g.section); return (
-    <section class="group">
+    <section class="group" id={g.id}>
       {g.phase && <h2 class="phase-h"><a href={g.phase.url}>{g.phase.title}</a></h2>}
       <h2 class={`sec-h t-${ti.tint}`}><span class="ic"><Icon name={ti.name} /></span>{g.section}</h2>
       {g.entries.map((e: any) => <QAItem entry={e} />)}
+      <p class="totop"><a href="#top">↑ Back to top</a></p>
     </section>
   ); })}
 </div>
