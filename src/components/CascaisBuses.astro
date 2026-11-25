@@ -5,14 +5,14 @@ const carris = [
   { t: 'Sintra (other)', x: 'Lines 1620, 1621 and 1623 run from Cascais (Terminal) to Portela de Sintra (Estação Sul, the south train station). 1621 goes via CascaiShopping (Terminal). VERIFIED that they exist.' },
   { t: 'The mall (CascaiShopping)', x: 'Line 1621 above runs via CascaiShopping, and 1626 runs CascaiShopping (Terminal) to Portela de Sintra. VERIFIED that they exist. These are long-distance lines, so for a local trip to the mall use MobiCascais.' },
   { t: 'Hospital de Cascais (Dr. José de Almeida)', x: 'Carris Metropolitana buses stop here, from the guide\'s author\'s own experience. I could not find which line numbers, because the line list I could read has no stop named Hospital de Cascais. Check the line on the Carris Metropolitana app or at the stop.' },
-  { t: 'CUF Cascais', x: 'No Carris Metropolitana line to CUF turned up in the lines I read. NOT CONFIRMED.' },
+  { t: 'CUF Cascais (Hospital CUF Cascais)', x: 'The hospital\'s address, per cuf.pt, is Rua Fernão Lopes 60, Cobre. The guide\'s author says stops are a couple of blocks away. I could not identify the nearest stop or its lines: the Carris Metropolitana stop data I could read has no Cascais stops, and the MobiCascais stop map would not open. NOT CONFIRMED. Look up the address in the Carris Metropolitana or MobiCascais app.' },
 ];
 const mobi = [
   { t: 'Guincho (the beach)', x: 'M05 (via Quinta da Marinha), M15 (via Areia) and M43 run from Cascais train station as loops (circular) and are listed as going via or to Guincho. VERIFIED from the MobiCascais line list. I did not read the stop lists.' },
   { t: 'Hospital de Cascais (Dr. José de Almeida)', x: 'MobiCascais buses stop here, from the guide\'s author\'s own experience. M40 starts at Hospital de Cascais and loops through Alcabideche and Malveira da Serra, and M31 is listed as Carcavelos train station to the hospital. VERIFIED for those two line names. I did not confirm a direct line from Cascais Terminal.' },
   { t: 'The mall (CascaiShopping)', x: 'M03 (loop via Torre), M29 (from São João do Estoril station), M38 (from Estoril station) and M01 (from Parede) are listed as serving it. PROBABLY TRUE. I could not confirm a numbered line straight from Cascais Terminal.' },
   { t: 'Estoril and the casino', x: 'M06, M07, M11, M12 and M13 run between Cascais Terminal and Estoril train station. VERIFIED for the line list. I could not confirm which stop is nearest the Casino Estoril.' },
-  { t: 'CUF Cascais', x: 'No line or stop confirmed from the official pages I could read. NOT CONFIRMED.' },
+  { t: 'CUF Cascais', x: 'Same as in the left column: I could not confirm the nearest stop or lines. NOT CONFIRMED.' },
 ];
 ---
 <section id="cascais-buses" class="visit buses" aria-label="Buses from Cascais Terminal">
@@ -28,6 +28,7 @@ const mobi = [
       {mobi.map(r => <div class="bus-row"><h4>{r.t}</h4><p>{r.x}</p></div>)}
     </div>
   </div>
+  <p class="totop"><a href="#top">↑ Back to top</a></p>
 </section>
 <style is:global>
   .buses { margin:1.4rem 0; }
