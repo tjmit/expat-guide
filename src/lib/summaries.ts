@@ -4,7 +4,7 @@ export type Line = { t: string; id: string };
 export const SUMMARIES: Record<string, { need: Line[]; consider: Line[]; know: Line[] }> = {
   B1: {
     need: [
-      { t: 'Order your FBI background check and get it apostilled. It must be issued less than 90 days before you apply.', id: 'b1-q9' },
+      { t: 'If you have lived in the US for over a year, you need an FBI background check, apostilled (a US State Department authentication stamp). It must be issued less than 90 days before you apply.', id: 'b1-q9' },
       { t: 'Book your visa appointment at the VFS center or consulate that covers your state.', id: 'b1-q8' },
     ],
     consider: [
@@ -18,45 +18,45 @@ export const SUMMARIES: Record<string, { need: Line[]; consider: Line[]; know: L
   },
   B2: {
     need: [
-      { t: 'File for your first residence permit with AIMA, by appointment or on its electronic platform.', id: 'b2-a1' },
-      { t: 'Get your NIF (tax number) in person at a Finanças office or Loja do Cidadão.', id: 'b2-b1' },
+      { t: 'File for your first residence permit with AIMA (Portugal’s immigration agency, roughly the US USCIS), by appointment or on the electronic platform it is rolling out.', id: 'b2-a1' },
+      { t: 'Get your NIF (tax number, roughly like a US tax ID) in person at a Finanças office (the tax office, roughly the US IRS) or a Loja do Cidadão (a government service office), by appointment.', id: 'b2-b1' },
     ],
     consider: [
-      { t: 'Register at your local health centre to get your SNS number and a family doctor.', id: 'b2-c1' },
-      { t: 'Open a bank account. If your foreign accounts pass $10,000, the US requires an FBAR.', id: 'b2-d2' },
+      { t: 'Go to the health centre for your area with your SNS number (the national health service number; you can get it when you register).', id: 'b2-c1' },
+      { t: 'You can open a basic bank account in Portugal. If your foreign accounts together pass $10,000 at any time in the year, the US requires an FBAR (foreign bank account report).', id: 'b2-d2' },
     ],
     know: [
-      { t: 'Your first permit lasts two years. Ask to renew at least 30 days before it expires.', id: 'b2-a3' },
+      { t: 'Ask to renew your permit no later than 30 days before it expires.', id: 'b2-a3' },
       { t: 'For emergencies, call 112.', id: 'b2-c2' },
-      { t: 'The free European Health Insurance Card covers necessary care on short trips in Europe. You probably qualify once you are registered with Portuguese Social Security (Segurança Social), but ask first.', id: 'b2-c4' },
+      { t: 'The free European Health Insurance Card covers necessary care on short trips in Europe. You may qualify if you are registered with Portuguese Social Security (Segurança Social), but no page confirms it for US citizens, so ask before you count on it.', id: 'b2-c4' },
     ],
   },
   B3: {
     need: [
-      { t: 'File a US tax return every year once your gross income reaches the standard deduction. The foreign earned income exclusion does not remove the duty to file. Living abroad gives an automatic extension to June 15.', id: 'b3-a2' },
+      { t: 'File a US tax return every year once your gross income reaches the filing threshold. The foreign earned income exclusion does not remove the duty to file. Living abroad gives an automatic extension to June 15.', id: 'b3-a1' },
       { t: 'File an FBAR if your foreign accounts passed $10,000 at any point in the year.', id: 'b3-c1' },
     ],
     consider: [
-      { t: 'Look at the foreign earned income exclusion and the foreign tax credit to limit double taxation.', id: 'b3-b1' },
+      { t: 'Look at the foreign earned income exclusion (up to $132,900 for 2026) and ask whether you qualify. The foreign tax credit may also help.', id: 'b3-b1' },
       { t: 'Ask a tax professional how Portugal taxes US retirement withdrawals. This is not confirmed yet.', id: 'b3-f3' },
     ],
     know: [
-      { t: 'The US-Portugal tax treaty does not stop the US taxing its citizens.', id: 'b3-g3' },
+      { t: 'The US-Portugal tax treaty mostly does not stop the US taxing its citizens.', id: 'b3-g3' },
       { t: 'If you are a Portuguese tax resident, you generally file a Portuguese return too.', id: 'b3-j1' },
     ],
   },
   B4: {
     need: [
       { t: 'Ask to renew your residence permit no later than 30 days before it expires.', id: 'b4-a2' },
-      { t: 'Keep absences short. A temporary permit can be cancelled after more than 6 consecutive months away.', id: 'b4-a6' },
+      { t: 'Keep absences short. A temporary permit can be cancelled after more than 6 consecutive months away, or 8 months in total.', id: 'b4-a6' },
     ],
     consider: [
-      { t: 'Permanent residence is possible after 5 years on a temporary permit, with basic Portuguese.', id: 'b4-b1' },
+      { t: 'Permanent residence is possible after 5 years on a temporary permit, with a clean record, income, housing and basic Portuguese.', id: 'b4-b1' },
       { t: 'Citizenship now needs 10 years of residence for US citizens.', id: 'b4-c1' },
     ],
     know: [
-      { t: 'Portuguese naturalization does not require you to give up US citizenship.', id: 'b4-c8' },
-      { t: 'Family of teaching permit holders can join without the usual two-year wait.', id: 'b4-e2' },
+      { t: 'Portuguese naturalization does not require you to give up US citizenship. The US side is not covered here.', id: 'b4-c8' },
+      { t: 'Family of teaching or highly qualified permit holders can join without the usual two-year wait.', id: 'b4-e2' },
     ],
   },
 };
