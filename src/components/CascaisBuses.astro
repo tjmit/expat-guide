@@ -28,6 +28,7 @@ const mobi = [
       {mobi.map(r => <div class="bus-row"><h4>{r.t}</h4><p>{r.x}</p></div>)}
     </div>
   </div>
+  <p class="bus-note"><strong>International schools:</strong> most run their own school buses. Of the lines above, M17 ends at Bairro da Cadeia do Linhó, and CAISL and TASIS both have Linhó addresses, but I could not confirm that M17 stops at either school. St. Dominic's says M16, M36, 1608 and 1609 are nearby. See <a href="#cascais-schools">International schools nearby</a>.</p>
   <p class="totop"><a href="#top">↑ Back to top</a></p>
 </section>
 <style is:global>
@@ -42,5 +43,6 @@ const mobi = [
   .bus-row { background:var(--surface); border-radius:14px; padding:.55rem .85rem; }
   .bus-row h4 { margin:0 0 .15rem; font-size:.95rem; color:var(--teal); }
   .bus-row p { margin:0; font-size:.9rem; line-height:1.5; }
+  .bus-note { margin:.7rem 0 0; font-size:.9rem; line-height:1.5; }
   @media (max-width:700px){ .bus-cols { grid-template-columns:minmax(0,1fr); } }
 </style>

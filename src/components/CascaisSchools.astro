@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+const schools = [
+  { n: "Carlucci American International School of Lisbon (CAISL)", u: 'https://www.caislisbon.org/', town: 'Linhó, Sintra (between Sintra and Cascais)', x: 'Address per its site: Rua António dos Reis 95. The school runs its own paid bus service for Cascais and Lisbon (no lines or stops named on the page I read). No public bus line is stated. NOT CONFIRMED whether M17 (which ends at Bairro da Cadeia do Linhó) helps.' },
+  { n: 'TASIS Portugal', u: 'https://www.tasisportugal.org/', town: 'Penaferrim, Sintra', x: 'American international school; its site lists Core Knowledge, Singapore Math, Cambridge IGCSE and the IB Diploma. Address per its site: Alameda do Linhó 2 to 8. Its community page lists a different address (Quinta da Beloura II), so check before you go. No bus line stated; the community page says the school hopes to lobby Carris (the public bus operator) for routes. NOT CONFIRMED.' },
+  { n: "St. Julian's School", u: 'https://www.stjulians.com/', town: 'Carcavelos', x: "British international school, ages 3 to 18. Address per its site: Quinta Nova, Av. Jorge V 374. It uses a partner company for mostly door-to-door school buses. No public bus line stated. NOT CONFIRMED." },
+  { n: "St. Dominic's International School", u: 'https://www.dominics-int.org/', town: 'Outeiro de Polima, São Domingos de Rana', x: 'Address per its site: Rua Maria Brown. Its transport page names door-to-door school buses and says nearby public lines include the MobiCascais M16 and M36 and the Carris Metropolitana 1608 and 1609. VERIFIED that the school says so; I did not check the stops.' },
+  { n: 'Oeiras International School (OIS)', u: 'https://ois.pt/', town: 'Barcarena, Oeiras', x: 'IB school (ages 5 to 19). It has its own bus routes from Cascais, Estoril, Sintra and Parede. For public transport its page says take the Cascais train line to Caxias station, then bus 117 to Barcarena, with a stop in front of the school. VERIFIED that the school says so.' },
+];
+---
+<section id="cascais-schools" class="visit schools" aria-label="International schools near Cascais">
+  <h2>International schools nearby</h2>
+  <p class="muted">Schools I could load and read, from their own websites. Many run their own school buses, which are separate from MobiCascais and Carris Metropolitana. This is not a complete list; others exist.</p>
+  <div class="vs-grid">
+    {schools.map(s => (
+      <div class="vs-row">
+        <div class="vs-lab"><span class="ic"><Icon name="graduation-cap" /></span><h3>{s.n}</h3></div>
+        <div><p><strong>{s.town}.</strong> {s.x} <a href={s.u} rel="noopener">School website</a></p></div>
+      </div>
+    ))}
+  </div>
+  <p class="totop"><a href="#top">↑ Back to top</a></p>
+</section>
