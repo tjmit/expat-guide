@@ -7,6 +7,7 @@ import CascaisMarket from '../../components/CascaisMarket.astro';
 import CascaisVisit from '../../components/CascaisVisit.astro';
 import CascaisEat from '../../components/CascaisEat.astro';
 import CascaisGroceries from '../../components/CascaisGroceries.astro';
+import CascaisBuses from '../../components/CascaisBuses.astro';
 import PortugalAbout from '../../components/PortugalAbout.astro';
 import CascaisAbout from '../../components/CascaisAbout.astro';
 import EmployerHelp from '../../components/EmployerHelp.astro';
@@ -51,6 +52,7 @@ const tone = PHASE_TONE[phase.key];
   {phase.key === 'B6' && <CascaisVisit />}
   {phase.key === 'B6' && <CascaisEat />}
   {phase.key === 'B6' && <CascaisGroceries />}
+  {phase.key === 'B6' && <CascaisBuses />}
   {phase.key === 'B5' && <LangCheck />}
   {phase.key === 'B5' && <PortugalAbout />}
   <QAList items={items} searchAtBottom />
