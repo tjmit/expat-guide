@@ -98,5 +98,5 @@ export const EMPLOYER_EXTRA: Record<string, Extra[]> = {
     { title: 'Reporting the end of a job and giving you a certificate of employment', note: 'When employment ends, the employer reports it to Portuguese Social Security and gives a certificate of employment with start and end dates and the positions held. You may need it if you change jobs.', ...EPORT },
   ],
 };
-export const EMPLOYER_EXTRA_NOTE = 'Some institutions also book your tax number (NIF) appointment or write a letter for your bank. That is one institution\u2019s practice, not a rule, so ask your HR department.';
+export const EMPLOYER_EXTRA_NOTE = 'Some people report that their institution also booked their tax number (NIF) appointment or wrote a letter for their bank. REASONABLY TRUE-UNVERIFIED: no source, and practice varies, so ask your HR department.';
 export const EMPLOYER_IDS = new Set(Object.values(EMPLOYER).flat().filter(e => e.kind !== 'yours').map(e => e.id));
