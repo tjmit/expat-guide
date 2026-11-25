@@ -1,23 +1,44 @@
 ---
 import Icon from './Icon.astro';
-const rows = [
-  { icon: 'bus', t: 'To CascaiShopping (the mall)', x: 'CascaiShopping has its own bus terminal. MobiCascais lines M03 (loop via Torre), M29 (from São João do Estoril train station), M38 (from Estoril train station) and M01 (from Parede) are listed as serving it. PROBABLY TRUE. I could not confirm a numbered line straight from Cascais Terminal (the bus station), so check the MobiCascais app.' },
-  { icon: 'bus', t: 'To the hospital (Hospital de Cascais, Dr. José de Almeida)', x: 'M40 starts at Hospital de Cascais and loops through Alcabideche and Malveira da Serra, per its timetable. M31 is listed as Carcavelos train station to Hospital de Cascais via Bicesse. VERIFIED for the line names. I did not confirm a direct line from Cascais Terminal.' },
-  { icon: 'bus', t: 'To CUF Cascais', x: 'I could not confirm any line or stop for CUF Cascais from the official pages I could read. Ask at the MobiCascais app or a kiosk.' },
-  { icon: 'bus', t: 'To Guincho (the beach)', x: 'M05 (via Quinta da Marinha), M15 (via Areia) and M43 all run from Cascais train station as loops (circular) and are listed as going via or to Guincho. VERIFIED from the MobiCascais line list. I did not read the stop lists.' },
-  { icon: 'bus', t: 'To Estoril and the casino', x: 'M06, M07, M11, M12 and M13 run between Cascais Terminal and Estoril train station. VERIFIED for the line list. I could not confirm which stop is nearest the Casino Estoril.' },
-  { icon: 'bus', t: 'To Sintra and Cabo da Roca', x: 'Scotturb (the regional bus company) lists lines 403 and 417 as "Cabo da Roca and Cascais", from Sintra train station to Cascais Terminal, every 30 minutes, 7 days a week. REASONABLY TRUE-UNVERIFIED. The source is an undated Scotturb tourist media kit, and I could not open the current timetable. The 417 number also clashes with MobiCascais line M17 (an old number), so confirm on the day.' },
+const carris = [
+  { t: 'Sintra and Cabo da Roca', x: 'Line 1624, Cascais (Terminal) to Portela de Sintra (Estação Norte, the north train station) via Cabo da Roca. VERIFIED that the line exists, from the Carris Metropolitana line list. I did not see its timetable or stops. Line 1253, Sintra (Estação) via Cabo da Roca, is a loop that starts in Sintra.' },
+  { t: 'Sintra (other)', x: 'Lines 1620, 1621 and 1623 run from Cascais (Terminal) to Portela de Sintra (Estação Sul, the south train station). 1621 goes via CascaiShopping (Terminal). VERIFIED that they exist.' },
+  { t: 'The mall (CascaiShopping)', x: 'Line 1621 above runs via CascaiShopping, and 1626 runs CascaiShopping (Terminal) to Portela de Sintra. VERIFIED that they exist. These are long-distance lines, so for a local trip to the mall use MobiCascais.' },
+  { t: 'Hospital de Cascais and CUF', x: 'No Carris Metropolitana line to either one turned up in the lines I read. NOT CONFIRMED.' },
+];
+const mobi = [
+  { t: 'Guincho (the beach)', x: 'M05 (via Quinta da Marinha), M15 (via Areia) and M43 run from Cascais train station as loops (circular) and are listed as going via or to Guincho. VERIFIED from the MobiCascais line list. I did not read the stop lists.' },
+  { t: 'Hospital de Cascais (Dr. José de Almeida)', x: 'M40 starts at Hospital de Cascais and loops through Alcabideche and Malveira da Serra. M31 is listed as Carcavelos train station to the hospital. VERIFIED for the line names. I did not confirm a direct line from Cascais Terminal.' },
+  { t: 'The mall (CascaiShopping)', x: 'M03 (loop via Torre), M29 (from São João do Estoril station), M38 (from Estoril station) and M01 (from Parede) are listed as serving it. PROBABLY TRUE. I could not confirm a numbered line straight from Cascais Terminal.' },
+  { t: 'Estoril and the casino', x: 'M06, M07, M11, M12 and M13 run between Cascais Terminal and Estoril train station. VERIFIED for the line list. I could not confirm which stop is nearest the Casino Estoril.' },
+  { t: 'CUF Cascais', x: 'No line or stop confirmed from the official pages I could read. NOT CONFIRMED.' },
 ];
 ---
-<section id="cascais-buses" class="visit groc" aria-label="Buses from Cascais Terminal">
+<section id="cascais-buses" class="visit buses" aria-label="Buses from Cascais Terminal">
   <h2>Buses from Cascais Terminal</h2>
-  <p class="muted">From mobi.cascais.pt and scotturb.com. I assumed CascaiShopping, Hospital de Cascais (Dr. José de Almeida) and CUF Cascais. People who live, work or study in Cascais ride the MobiCascais lines (the "M" numbers) free with a Viver Cascais card. Routes and numbers change, so check the app.</p>
-  <div class="vs-grid">
-    {rows.map(r => (
-      <div class="vs-row">
-        <div class="vs-lab"><span class="ic"><Icon name={r.icon} /></span><h3>{r.t}</h3></div>
-        <div><p>{r.x}</p></div>
-      </div>
-    ))}
+  <p class="muted"><strong>Two separate bus systems share the Cascais bus station, with separate cards.</strong> They are independent: a card from one is not the other's. From the guide's author, not an official page: Carris Metropolitana (the regional system, like a county or metro-area transit agency) uses the yellow Navegante card, and MobiCascais (the local Cascais town system) uses a white card with yellow and blue circles. People who live, work or study in Cascais ride MobiCascais free with a Viver Cascais card. I assumed CascaiShopping, Hospital de Cascais and CUF Cascais. Line numbers change, so check the apps.</p>
+  <div class="bus-cols">
+    <div class="bus-col">
+      <h3><span class="ic"><Icon name="bus" /></span>Carris Metropolitana <small>(yellow Navegante card)</small></h3>
+      {carris.map(r => <div class="bus-row"><h4>{r.t}</h4><p>{r.x}</p></div>)}
+    </div>
+    <div class="bus-col">
+      <h3><span class="ic"><Icon name="bus" /></span>MobiCascais <small>(local Cascais system, M lines)</small></h3>
+      {mobi.map(r => <div class="bus-row"><h4>{r.t}</h4><p>{r.x}</p></div>)}
+    </div>
   </div>
 </section>
+<style is:global>
+  .buses { margin:1.4rem 0; }
+  .buses h2 { font-size:1.15rem; margin:0 0 .2rem; }
+  .buses > p { margin:0 0 .7rem; font-size:.92rem; line-height:1.5; }
+  .bus-cols { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; align-items:start; }
+  .bus-col { background:var(--teal-soft); border-radius:20px; padding:.8rem .9rem; display:flex; flex-direction:column; gap:.5rem; }
+  .bus-col h3 { display:flex; align-items:center; flex-wrap:wrap; gap:.5rem; margin:0; font-size:1.02rem; color:var(--teal); }
+  .bus-col h3 small { font-weight:600; font-size:.8rem; }
+  .bus-col .ic { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--surface); color:var(--teal); } .bus-col .ic .i { --s:1.1rem; }
+  .bus-row { background:var(--surface); border-radius:14px; padding:.55rem .85rem; }
+  .bus-row h4 { margin:0 0 .15rem; font-size:.95rem; color:var(--teal); }
+  .bus-row p { margin:0; font-size:.9rem; line-height:1.5; }
+  @media (max-width:700px){ .bus-cols { grid-template-columns:minmax(0,1fr); } }
+</style>
