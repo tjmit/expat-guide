@@ -59,10 +59,6 @@
     "alt": "Round yellow palace tower with arched windows and an ornate carved stone turret beside it",
     "caption": "Pena Palace, Sintra"
   },
-  "moorish-castle-aerial-view.jpg": {
-    "alt": "Crenellated castle walls along a forested rocky ridge seen from above, with a valley beyond",
-    "caption": "Pena Palace, Sintra"
-  },
   "tile-and-carved-column-detail.jpg": {
     "alt": "Green leaf tiles, a carved stone twisted column and blue patterned tiles side by side",
     "caption": "Pena Palace, Sintra"
@@ -86,6 +82,10 @@
   "red-hut-with-crown-pena-park.jpg": {
     "alt": "Small red round house with a crown-shaped top and mossy roof in a woodland garden",
     "caption": "Pena Park, Sintra"
+  },
+  "moorish-castle-aerial-view.jpg": {
+    "alt": "Crenellated castle walls along a forested rocky ridge seen from above, with a valley beyond",
+    "caption": "Moorish Castle, Sintra"
   },
   "moorish-castle-walls-hill.jpg": {
     "alt": "Crenellated castle walls climbing a rocky forested hill, with a flag on the tower and a valley beyond",
