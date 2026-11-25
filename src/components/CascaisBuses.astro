@@ -4,12 +4,12 @@ const carris = [
   { t: 'Sintra and Cabo da Roca', x: 'Line 1624, Cascais (Terminal) to Portela de Sintra (Estação Norte, the north train station) via Cabo da Roca. VERIFIED that the line exists, from the Carris Metropolitana line list. I did not see its timetable or stops. Line 1253, Sintra (Estação) via Cabo da Roca, is a loop that starts in Sintra.' },
   { t: 'Sintra (other)', x: 'Lines 1620, 1621 and 1623 run from Cascais (Terminal) to Portela de Sintra (Estação Sul, the south train station). 1621 goes via CascaiShopping (Terminal). VERIFIED that they exist.' },
   { t: 'The mall (CascaiShopping)', x: 'Line 1621 above runs via CascaiShopping, and 1626 runs CascaiShopping (Terminal) to Portela de Sintra. VERIFIED that they exist. These are long-distance lines, so for a local trip to the mall use MobiCascais.' },
-  { t: 'Hospital de Cascais (Dr. José de Almeida)', x: 'Carris Metropolitana buses stop here, from the guide\'s author\'s own experience. I could not find which line numbers, because the line list I could read has no stop named Hospital de Cascais. Check the line on the Carris Metropolitana app or at the stop.' },
-  { t: 'CUF Cascais (Hospital CUF Cascais)', x: 'The hospital\'s address, per cuf.pt, is Rua Fernão Lopes 60, Cobre. The guide\'s author says stops are a couple of blocks away. I could not identify the nearest stop or its lines: the Carris Metropolitana stop data I could read has no Cascais stops, and the MobiCascais stop map would not open. NOT CONFIRMED. Look up the address in the Carris Metropolitana or MobiCascais app.' },
+  { t: 'Hospital de Cascais (Dr. José de Almeida)', x: 'No Carris Metropolitana line to Hospital de Cascais turned up in the lines I read, and the stop lists were not readable. NOT CONFIRMED. Check the Carris Metropolitana app.' },
+  { t: 'CUF Cascais (Hospital CUF Cascais)', x: 'The hospital\'s address, per cuf.pt, is Rua Fernão Lopes 60, Cobre. I could not identify the nearest stop or its lines: the Carris Metropolitana stop data I could read has no Cascais stops, and the MobiCascais stop map would not open. NOT CONFIRMED. Look up the address in the Carris Metropolitana or MobiCascais app.' },
 ];
 const mobi = [
   { t: 'Guincho (the beach)', x: 'M05 (via Quinta da Marinha), M15 (via Areia) and M43 run from Cascais train station as loops (circular) and are listed as going via or to Guincho. VERIFIED from the MobiCascais line list. I did not read the stop lists.' },
-  { t: 'Hospital de Cascais (Dr. José de Almeida)', x: 'MobiCascais buses stop here, from the guide\'s author\'s own experience. M40 starts at Hospital de Cascais and loops through Alcabideche and Malveira da Serra, and M31 is listed as Carcavelos train station to the hospital. VERIFIED for those two line names. I did not confirm a direct line from Cascais Terminal.' },
+  { t: 'Hospital de Cascais (Dr. José de Almeida)', x: 'M40 starts at Hospital de Cascais and loops through Alcabideche and Malveira da Serra, and M31 is listed as Carcavelos train station to the hospital. VERIFIED for those two line names. I did not confirm a direct line from Cascais Terminal.' },
   { t: 'The mall (CascaiShopping)', x: 'M03 (loop via Torre), M29 (from São João do Estoril station), M38 (from Estoril station) and M01 (from Parede) are listed as serving it. PROBABLY TRUE. I could not confirm a numbered line straight from Cascais Terminal.' },
   { t: 'Estoril and the casino', x: 'M06, M07, M11, M12 and M13 run between Cascais Terminal and Estoril train station. VERIFIED for the line list. I could not confirm which stop is nearest the Casino Estoril.' },
   { t: 'CUF Cascais', x: 'Same as in the left column: I could not confirm the nearest stop or lines. NOT CONFIRMED.' },
@@ -17,10 +17,10 @@ const mobi = [
 ---
 <section id="cascais-buses" class="visit buses" aria-label="Buses from Cascais Terminal">
   <h2>Buses from Cascais Terminal</h2>
-  <p class="muted"><strong>Two separate bus systems share the Cascais bus station, with separate cards.</strong> They are independent: a card from one is not the other's. From the guide's author, not an official page: Carris Metropolitana (the regional system, like a county or metro-area transit agency) uses the yellow Navegante card, and MobiCascais (the local Cascais town system) uses a white card with yellow and blue circles. People who live, work or study in Cascais ride MobiCascais free with a Viver Cascais card. Both systems serve Hospital de Cascais. I assumed CascaiShopping, Hospital de Cascais (Dr. José de Almeida) and CUF Cascais. Line numbers change, so check the apps.</p>
+  <p class="muted"><strong>Carris Metropolitana and MobiCascais are two separate bus networks</strong> with their own line numbers, timetables and apps. MobiCascais is the Cascais council's system. I did not confirm whether a ticket or card from one works on the other, so check before you rely on it. People who live, work or study in Cascais ride MobiCascais free with a Viver Cascais card. I assumed CascaiShopping, Hospital de Cascais (Dr. José de Almeida) and CUF Cascais. Line numbers change, so check the apps.</p>
   <div class="bus-cols">
     <div class="bus-col">
-      <h3><span class="ic"><Icon name="bus" /></span>Carris Metropolitana <small>(yellow Navegante card)</small></h3>
+      <h3><span class="ic"><Icon name="bus" /></span>Carris Metropolitana</h3>
       {carris.map(r => <div class="bus-row"><h4>{r.t}</h4><p>{r.x}</p></div>)}
     </div>
     <div class="bus-col">
@@ -28,7 +28,7 @@ const mobi = [
       {mobi.map(r => <div class="bus-row"><h4>{r.t}</h4><p>{r.x}</p></div>)}
     </div>
   </div>
-  <p class="bus-note"><strong>International schools:</strong> most run their own school buses. Of the lines above, M17 ends at Bairro da Cadeia do Linhó, and CAISL and TASIS both have Linhó addresses, but I could not confirm that M17 stops at either school. St. Dominic's says M16, M36, 1608 and 1609 are nearby. See <a href="#cascais-schools">International schools nearby</a>.</p>
+  <p class="bus-note"><strong>International schools:</strong> most run their own school buses. Of the lines above, M17 ends at Bairro da Cadeia do Linhó, and CAISL and TASIS both have Linhó addresses, but I could not confirm that M17 stops at either school. St. Dominic's says M16, M36, 1608 and 1609 are nearby. Carris Metropolitana lines 1620, 1621, 1623 and 1624 run from Cascais Terminal to Sintra, but I could not get their stop names, so it is NOT CONFIRMED that any of them stops near CAISL or TASIS. See <a href="#cascais-schools">International schools nearby</a>.</p>
   <p class="totop"><a href="#top">↑ Back to top</a></p>
 </section>
 <style is:global>
