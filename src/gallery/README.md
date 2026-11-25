@@ -9,3 +9,6 @@ For a photo that is not your own, also add `"license"` (for example "CC BY 4.0")
 ## Caption rule (set by Todd)
 
 Captions are a short place name only, taken from the photo's location EXIF/GPS data (read it from the original file, before resizing). A photo with no GPS gets an empty caption unless Todd supplies the location. Never publish raw coordinates, and strip EXIF from the web copies. Credit is not per photo: the page shows one "All photos by Todd" line at the bottom.
+
+## GPS audit (25 Nov 2026)
+Captions for 17 photos were checked against the GPS data in the originals and match. The Pena Palace photo shown first is not Todd's: it is the Michael Gaylard CC BY 4.0 image (credit shown under it). Seven captions have no GPS in the file they came from (Bom Jesus do Monte x2, Douro Valley x2, Cascais murals x3) and rest on Todd's word. See the audit report.

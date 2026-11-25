@@ -13,7 +13,7 @@ const order = ['Cascais at a glance', 'Mercado da Vila', 'Places to visit', 'Whe
   <p>Items show when they were last checked against the linked source. A "checked" date is not a promise the source is still current.</p>
   <h2>What the labels mean</h2>
   <Legend open />
-  <p class="muted">The original label is shown inside each answer under its citations.</p>
+  <p class="muted">The original label is shown inside each answer under its citations. A fourth tag, <strong>NOT CONFIRMED</strong>, appears in the Cascais and Portugal boxes where we looked and could not find an answer. A label says how well a statement is backed by the source named next to it, not that the source is current.</p><p class="muted"><strong>Audit, 25 Nov 2026.</strong> Bus lines and stops (Carris Metropolitana open data), the Mercado da Vila schedule (Cascais council page), the Michelin and Repsol awards (Time Out Cascais articles), the three UNESCO listings and the CIPLE exam facts were re-read from the sources on that date. Items marked "not re-checked" were read earlier and were not re-read.</p>
   <h2>Sources for the Cascais and Portugal boxes</h2>
   <p class="muted">Dates are as shown on each page. Most guides are travel or tourism pages, not official sources, so confirm hours, prices and opening days before you go.</p>
   {order.map(k => boxSources[k] && (<><h3>{k}</h3><div set:html={boxSources[k]} /></>))}
