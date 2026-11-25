@@ -1,20 +1,4 @@
 {
-  "pena-palace-sintra.jpg": {
-    "alt": "Pena Palace on its forested hilltop in Sintra: red clock tower, red and yellow walls under a cloudy sky",
-    "caption": "Pena Palace, Sintra"
-  },
-  "pena-palace-from-afar.jpg": {
-    "alt": "Pena Palace, red and yellow, on a forested hilltop seen across the trees, with granite boulders in the foreground",
-    "caption": "Pena Palace, Sintra"
-  },
-  "baroque-stairway-church.jpg": {
-    "alt": "The Bom Jesus do Monte stairway: a long grey and white stone stairway with decorated landings rising to a twin-towered church",
-    "caption": "Bom Jesus do Monte"
-  },
-  "terraced-vineyards-autumn.jpg": {
-    "alt": "Terraced vineyards on hillsides in autumn colors under a low sun and scattered clouds",
-    "caption": "Douro Valley"
-  },
   "dolphin-mural.jpg": {
     "alt": "Painted mural of a dolphin swimming against a blue background",
     "caption": "Cascais"
@@ -27,14 +11,6 @@
     "alt": "Large wall mural of waves, a stairway into the sea and a seaside town, with green vines and red flowers growing over the top",
     "caption": "Cascais"
   },
-  "garden-grotto-gazebo.jpg": {
-    "alt": "A garden grotto with stalactite-like formations beside a pond, topped by a wooden gazebo, in golden evening light at Bom Jesus do Monte",
-    "caption": "Bom Jesus do Monte"
-  },
-  "ornate-palace-and-pond.jpg": {
-    "alt": "Ornate stone palace with a tall tower, reflected in a garden pond, under a blue sky",
-    "caption": "Buçaco"
-  },
   "sunset-over-river-bay.jpg": {
     "alt": "Orange and gold sunset sky over a wide bay, with a sailboat on the water and a lit tower in the foreground",
     "caption": "Cascais"
@@ -42,62 +18,6 @@
   "rust-head-sculpture.jpg": {
     "alt": "Large rust-colored sculpture of a split face on a plinth, in a cobbled garden",
     "caption": "Cascais"
-  },
-  "terraced-vineyards-hills.jpg": {
-    "alt": "Terraced vineyards in autumn colors on rolling hills under scattered clouds",
-    "caption": "Douro Valley"
-  },
-  "river-valley-purple-flowers.jpg": {
-    "alt": "A river winding through a hilly valley with terraced slopes, purple flowering shrubs in the foreground, under a cloudy sky",
-    "caption": "Douro Valley"
-  },
-  "blue-tile-sea-panel.jpg": {
-    "alt": "Blue and white tile panel (azulejo) showing crashing waves, framed by a colorful floral border",
-    "caption": "Buçaco"
-  },
-  "yellow-palace-tower.jpg": {
-    "alt": "Round yellow palace tower with arched windows and an ornate carved stone turret beside it",
-    "caption": "Pena Palace, Sintra"
-  },
-  "spiral-stone-well.jpg": {
-    "alt": "Looking up through a spiral stone well with arched openings toward trees and sky",
-    "caption": "Quinta da Regaleira, Sintra"
-  },
-  "bronze-seated-statue-cafe.jpg": {
-    "alt": "Green-patinated bronze statue of a seated woman beside a cafe terrace with umbrellas",
-    "caption": "Coimbra"
-  },
-  "museum-stone-bust-fragment.jpg": {
-    "alt": "Pale clay sculpture fragment of a bearded man's head and draped shoulders, lit in a dark museum room",
-    "caption": "Coimbra"
-  },
-  "museum-sculpture-hand.jpg": {
-    "alt": "Close-up of a clay sculpture of a hand with raised fingers, lit in a dark room",
-    "caption": "Coimbra"
-  },
-  "bamboo-grove-path.jpg": {
-    "alt": "A cobbled path through a tall bamboo grove with sunlight streaming through the canes",
-    "caption": "Botanical Garden, Coimbra"
-  },
-  "shaded-cobbled-garden-path.jpg": {
-    "alt": "A cobbled garden path under leafy trees, edged with a low clipped hedge",
-    "caption": "Botanical Garden, Coimbra"
-  },
-  "stone-granaries-and-fortress.jpg": {
-    "alt": "Two raised stone granaries on pillars in front of a granite fortress, on dry grass and rock under a blue sky",
-    "caption": "Lindoso Castle, Gerês"
-  },
-  "granite-fortress-hilltop.jpg": {
-    "alt": "A low granite fortress with a flag on dry grassland and boulders under a clear blue sky",
-    "caption": "Lindoso Castle, Gerês"
-  },
-  "dune-boardwalk-to-sea.jpg": {
-    "alt": "A wooden boardwalk with railings crossing coastal dunes toward the sea under a blue sky",
-    "caption": "Guincho, Cascais"
-  },
-  "domed-tower-gothic-balustrade.jpg": {
-    "alt": "Round tower with a golden-trimmed dome and pointed-arch window, framed by trees and palms, with a carved stone balustrade below",
-    "caption": "Monserrate Palace, Sintra"
   },
   "sunset-over-ocean-gull.jpg": {
     "alt": "Orange sunset over the ocean with a gull in the sky and dark rocks in the foreground",
@@ -111,33 +31,37 @@
     "alt": "Dark metal rooster figurine with a red comb and heart, with a pink building and courtyard behind",
     "caption": "Cascais"
   },
-  "robin-on-mossy-trunk.jpg": {
-    "alt": "A robin perched on a moss-covered tree trunk among green leaves",
-    "caption": "Sintra"
-  },
-  "moorish-castle-walls-hill.jpg": {
-    "alt": "Crenellated castle walls climbing a rocky forested hill, with a flag on the tower and a valley beyond",
-    "caption": "Moorish Castle, Sintra"
-  },
-  "pena-palace-through-battlements.jpg": {
-    "alt": "The red and yellow palace on a distant forested hilltop, seen through a gap between stone battlements",
-    "caption": "Moorish Castle, Sintra"
-  },
-  "red-hut-with-crown-pena-park.jpg": {
-    "alt": "Small red round house with a crown-shaped top and mossy roof in a woodland garden",
-    "caption": "Pena Park, Sintra"
-  },
   "stone-mansion-tower-dusk.jpg": {
     "alt": "Grey stone mansion with a pointed tower and balcony under a cloudy dusk sky",
     "caption": "Cascais"
   },
-  "moorish-castle-aerial-view.jpg": {
-    "alt": "Crenellated castle walls along a forested rocky ridge seen from above, with a valley beyond",
-    "caption": "Pena Palace, Sintra"
-  },
   "teapot-shelf-curved-ceiling.jpg": {
     "alt": "Curved ceiling of dark and white ribs with small teapots on shelves",
     "caption": "Cascais"
+  },
+  "sunset-over-bay-tower.jpg": {
+    "alt": "Orange sunset over a bay with a pointed tower and rooftops in the foreground",
+    "caption": "Cascais"
+  },
+  "dune-boardwalk-to-sea.jpg": {
+    "alt": "A wooden boardwalk with railings crossing coastal dunes toward the sea under a blue sky",
+    "caption": "Guincho, Cascais"
+  },
+  "pena-palace-sintra.jpg": {
+    "alt": "Pena Palace on its forested hilltop in Sintra: red clock tower, red and yellow walls under a cloudy sky",
+    "caption": "Pena Palace, Sintra"
+  },
+  "pena-palace-from-afar.jpg": {
+    "alt": "Pena Palace, red and yellow, on a forested hilltop seen across the trees, with granite boulders in the foreground",
+    "caption": "Pena Palace, Sintra"
+  },
+  "yellow-palace-tower.jpg": {
+    "alt": "Round yellow palace tower with arched windows and an ornate carved stone turret beside it",
+    "caption": "Pena Palace, Sintra"
+  },
+  "moorish-castle-aerial-view.jpg": {
+    "alt": "Crenellated castle walls along a forested rocky ridge seen from above, with a valley beyond",
+    "caption": "Pena Palace, Sintra"
   },
   "tile-and-carved-column-detail.jpg": {
     "alt": "Green leaf tiles, a carved stone twisted column and blue patterned tiles side by side",
@@ -159,6 +83,30 @@
     "alt": "Red palace tower with battlements above a misty forested valley",
     "caption": "Pena Palace, Sintra"
   },
+  "red-hut-with-crown-pena-park.jpg": {
+    "alt": "Small red round house with a crown-shaped top and mossy roof in a woodland garden",
+    "caption": "Pena Park, Sintra"
+  },
+  "moorish-castle-walls-hill.jpg": {
+    "alt": "Crenellated castle walls climbing a rocky forested hill, with a flag on the tower and a valley beyond",
+    "caption": "Moorish Castle, Sintra"
+  },
+  "pena-palace-through-battlements.jpg": {
+    "alt": "The red and yellow palace on a distant forested hilltop, seen through a gap between stone battlements",
+    "caption": "Moorish Castle, Sintra"
+  },
+  "robin-on-mossy-trunk.jpg": {
+    "alt": "A robin perched on a moss-covered tree trunk among green leaves",
+    "caption": "Sintra"
+  },
+  "spiral-stone-well.jpg": {
+    "alt": "Looking up through a spiral stone well with arched openings toward trees and sky",
+    "caption": "Quinta da Regaleira, Sintra"
+  },
+  "domed-tower-gothic-balustrade.jpg": {
+    "alt": "Round tower with a golden-trimmed dome and pointed-arch window, framed by trees and palms, with a carved stone balustrade below",
+    "caption": "Monserrate Palace, Sintra"
+  },
   "ruined-arch-garden.jpg": {
     "alt": "Stone ruin with an arched window and a garden path with ferns",
     "caption": "Monserrate Palace, Sintra"
@@ -175,12 +123,64 @@
     "alt": "A hall of ornate carved white arches with warm lighting",
     "caption": "Monserrate Palace, Sintra"
   },
-  "sunset-over-bay-tower.jpg": {
-    "alt": "Orange sunset over a bay with a pointed tower and rooftops in the foreground",
-    "caption": "Cascais"
-  },
   "mesh-bat-sculpture-window.jpg": {
     "alt": "Silver mesh sculpture of a bat with spread wings hanging in a window",
     "caption": "Lisbon"
+  },
+  "bronze-seated-statue-cafe.jpg": {
+    "alt": "Green-patinated bronze statue of a seated woman beside a cafe terrace with umbrellas",
+    "caption": "Coimbra"
+  },
+  "museum-stone-bust-fragment.jpg": {
+    "alt": "Pale clay sculpture fragment of a bearded man's head and draped shoulders, lit in a dark museum room",
+    "caption": "Coimbra"
+  },
+  "museum-sculpture-hand.jpg": {
+    "alt": "Close-up of a clay sculpture of a hand with raised fingers, lit in a dark room",
+    "caption": "Coimbra"
+  },
+  "bamboo-grove-path.jpg": {
+    "alt": "A cobbled path through a tall bamboo grove with sunlight streaming through the canes",
+    "caption": "Botanical Garden, Coimbra"
+  },
+  "shaded-cobbled-garden-path.jpg": {
+    "alt": "A cobbled garden path under leafy trees, edged with a low clipped hedge",
+    "caption": "Botanical Garden, Coimbra"
+  },
+  "ornate-palace-and-pond.jpg": {
+    "alt": "Ornate stone palace with a tall tower, reflected in a garden pond, under a blue sky",
+    "caption": "Buçaco"
+  },
+  "blue-tile-sea-panel.jpg": {
+    "alt": "Blue and white tile panel (azulejo) showing crashing waves, framed by a colorful floral border",
+    "caption": "Buçaco"
+  },
+  "terraced-vineyards-autumn.jpg": {
+    "alt": "Terraced vineyards on hillsides in autumn colors under a low sun and scattered clouds",
+    "caption": "Douro Valley"
+  },
+  "terraced-vineyards-hills.jpg": {
+    "alt": "Terraced vineyards in autumn colors on rolling hills under scattered clouds",
+    "caption": "Douro Valley"
+  },
+  "river-valley-purple-flowers.jpg": {
+    "alt": "A river winding through a hilly valley with terraced slopes, purple flowering shrubs in the foreground, under a cloudy sky",
+    "caption": "Douro Valley"
+  },
+  "baroque-stairway-church.jpg": {
+    "alt": "The Bom Jesus do Monte stairway: a long grey and white stone stairway with decorated landings rising to a twin-towered church",
+    "caption": "Bom Jesus do Monte"
+  },
+  "garden-grotto-gazebo.jpg": {
+    "alt": "A garden grotto with stalactite-like formations beside a pond, topped by a wooden gazebo, in golden evening light at Bom Jesus do Monte",
+    "caption": "Bom Jesus do Monte"
+  },
+  "stone-granaries-and-fortress.jpg": {
+    "alt": "Two raised stone granaries on pillars in front of a granite fortress, on dry grass and rock under a blue sky",
+    "caption": "Lindoso Castle, Gerês"
+  },
+  "granite-fortress-hilltop.jpg": {
+    "alt": "A low granite fortress with a flag on dry grassland and boulders under a clear blue sky",
+    "caption": "Lindoso Castle, Gerês"
   }
 }
