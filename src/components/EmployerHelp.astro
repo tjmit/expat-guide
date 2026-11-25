@@ -1,15 +1,17 @@
 ---
 import Icon from './Icon.astro';
 import TeacherNote from './TeacherNote.astro';
-import { EMPLOYER, EMPLOYER_EXTRA, EMPLOYER_EXTRA_NOTE } from '../lib/summaries';
+import { EMPLOYER, EMPLOYER_EXTRA, EMPLOYER_EXTRA_NOTE, EMPLOYER_MIGHT } from '../lib/summaries';
+import { CONF_CLASS, CONF_ORIGINAL } from '../lib/qa';
 const { phaseKey, items } = Astro.props;
 const rows = (EMPLOYER[phaseKey] ?? []).map(r => ({ ...r, q: items.find((e: any) => e.data.id === r.id)?.data.question })).filter(r => r.q);
 const extra = EMPLOYER_EXTRA[phaseKey] ?? [];
+const might = EMPLOYER_MIGHT[phaseKey] ?? [];
 const must = rows.filter((r: any) => r.kind === 'must');
 const varies = rows.filter((r: any) => r.kind === 'varies');
 const yours = rows.filter((r: any) => r.kind === 'yours');
 ---
-{(rows.length > 0 || extra.length > 0) && (
+{(rows.length > 0 || extra.length > 0 || might.length > 0) && (
   <section class="emp" aria-label="Teaching or coming to work in Portugal">
     <details class="emp-d" open>
     <summary><span class="ic hd"><Icon name="graduation-cap" /></span><h2>Teaching or coming to work in Portugal?</h2></summary>
@@ -23,6 +25,10 @@ const yours = rows.filter((r: any) => r.kind === 'yours');
     {must.length === 0 && extra.length > 0 && <ul>
       {extra.map(x => (<li><span class="ic"><Icon name="briefcase" /></span><span><strong>{x.title}</strong><br /><span class="muted">{x.note}{' '}<a class="xsrc" href={x.src} rel="noopener">Source: {x.srcLabel}</a></span></span></li>))}
     </ul>}
+    {might.length > 0 && <h3 class="eg">What your employer might do</h3>}
+    {might.length > 0 && <ul>
+      {might.map(m => (<li><span class="ic"><Icon name="briefcase" /></span><span>{m.id ? <a href={`#${m.id}`}>{m.title}</a> : <strong>{m.title}</strong>}<br /><span class="muted">{m.note}</span><br /><span class={`badge ${CONF_CLASS[m.label]}`}>{CONF_ORIGINAL[m.label]}</span>{m.srcs.map(x => (<> <a class="xsrc" href={x.url} rel="noopener">{x.label}</a></>))}</span></li>))}
+    </ul>}
     {varies.length > 0 && <h3 class="eg">Varies, so ask HR</h3>}
     {varies.length > 0 && <ul>
       {varies.map(r => (<li><span class="ic"><Icon name="briefcase" /></span><span><a href={`#${r.id}`}>{r.q}</a><br /><span class="muted">{r.note}</span></span></li>))}
@@ -31,11 +37,12 @@ const yours = rows.filter((r: any) => r.kind === 'yours');
     {yours.length > 0 && <ul>
       {yours.map(r => (<li><span class="ic"><Icon name="briefcase" /></span><span><a href={`#${r.id}`}>{r.q}</a><br /><span class="muted">{r.note}</span></span></li>))}
     </ul>}
+    {might.length > 0 && <p class="muted emp-note">Full before-and-after list: <a href="/employer-checklist">Employer or you? Checklist</a>.</p>}
     {phaseKey === 'B2' && <p class="muted emp-note">{EMPLOYER_EXTRA_NOTE}</p>}
     </details>
   </section>
 )}
-{!(rows.length > 0 || extra.length > 0) && !['B5','B6'].includes(phaseKey) && <TeacherNote />}
+{!(rows.length > 0 || extra.length > 0 || might.length > 0) && !['B5','B6'].includes(phaseKey) && <TeacherNote />}
 <style is:global>
   .emp summary { display:flex; align-items:center; gap:.6rem; } .emp summary h2 { margin-right:auto !important; } .emp summary .hd { display:grid; place-items:center; flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--surface); color:var(--green); } .emp summary .hd .i { --s:1.1rem; }
   .emp .eg { font-size:.9rem; margin:.7rem 0 .3rem; color:var(--green); }

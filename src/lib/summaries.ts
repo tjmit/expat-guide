@@ -100,3 +100,67 @@ export const EMPLOYER_EXTRA: Record<string, Extra[]> = {
 };
 export const EMPLOYER_EXTRA_NOTE = 'Some people report that their institution also booked their tax number (NIF) appointment or wrote a letter for their bank. REASONABLY TRUE-UNVERIFIED: no source, and practice varies, so ask your HR department.';
 export const EMPLOYER_IDS = new Set(Object.values(EMPLOYER).flat().filter(e => e.kind !== 'yours').map(e => e.id));
+
+// "Some schools offer" items. Each carries its own label and sources. Added 2026-11-25.
+export type Might = { id?: string; title: string; note: string; label: 'VERIFIED' | 'PROBABLY TRUE' | 'UNVERIFIED'; srcs: { label: string; url: string }[] };
+const TH = { label: 'Teacher Horizons: what to ask before signing (HR questions list)', url: 'https://www.teacherhorizons.com/advice/what-to-ask-before-signing-your-international-teaching-contract' };
+const TA = { label: 'TeachAway: what to look for in a school contract', url: 'https://www.teachaway.com/blog/what-to-look-for-international-school-contract' };
+const TES = { label: 'Tes: ways to help new international staff settle (2021)', url: 'https://www.tes.com/news/5-unexpected-ways-help-international-teachers-staff-settle' };
+const SJS = { label: 'Tes: St. Julian’s School job posting (2024, expired)', url: 'https://www.tes.com/jobs/vacancy/head-of-chemistry-portugal-2065180' };
+const SCH = { label: 'Schrole: becoming an international teacher in Portugal (2023)', url: 'https://www.schrole.com/news/everything-you-need-to-know-about-becoming-an-international-teacher-in-portugal/' };
+export const EMPLOYER_MIGHT: Record<string, Might[]> = {
+  B1: [
+    { id: 'b1-q1', title: 'Visa and permit support', note: 'Some schools manage the visa and work-permit paperwork and pay the fees. Recruiter guides tell teachers to ask who does it and who pays. The visa appointment and your own documents stay yours.', label: 'PROBABLY TRUE', srcs: [TH, TA] },
+    { id: 'b1-q13', title: 'Health insurance', note: 'Some schools include medical insurance in the package. One Portuguese school lists “medical and life insurance” in a posting. Ask whether it meets the visa requirement and covers family.', label: 'VERIFIED', srcs: [SJS, SCH] },
+    { id: 'b1-q14', title: 'Help finding housing', note: 'Some schools help you find a home, or give temporary housing on arrival. Tes says schools “usually” support the search.', label: 'PROBABLY TRUE', srcs: [TES, TA] },
+    { title: 'Relocation allowance and flights', note: 'Some schools pay a relocation allowance, including flights at the start and end of the contract. One Portuguese school lists exactly that. Others offer none.', label: 'VERIFIED', srcs: [SJS, TA] },
+    { title: 'Airport pickup and a welcome orientation', note: 'Some schools meet new staff at the airport or hold an induction.', label: 'PROBABLY TRUE', srcs: [TA, TH, TES] },
+  ],
+  B2: [
+    { id: 'b2-b3', title: 'Your NISS (Social Security number)', note: 'The employer needs your NISS to notify Social Security that you were hired (gov.pt lists it as a required item), so it makes sense for HR to help you get it early. Whether yours does is not documented.', label: 'UNVERIFIED', srcs: [{ label: 'gov.pt: notification of employee admission', url: 'https://www2.gov.pt/en/inicio/espaco-empresa/balcao-do-empreendedor/entidade-empregadora-comunicacao-de-admissao-de-trabalhador' }] },
+    { id: 'b2-b1', title: 'Your NIF (tax number)', note: 'HR departments often need your NIF for payroll, so some may book the appointment or guide you. Reasoned, not sourced.', label: 'UNVERIFIED', srcs: [] },
+    { id: 'b2-d1', title: 'Opening a bank account', note: 'Some schools write a letter for the bank or send a staff member to the first visit. One teachers’ guide recommends the staff visit. You still choose the bank and sign.', label: 'PROBABLY TRUE', srcs: [TES, TH] },
+    { id: 'b2-c1', title: 'Registering for healthcare', note: 'Recruiter guides list help with healthcare registration as something to ask HR for. You register in person with your own numbers.', label: 'PROBABLY TRUE', srcs: [TH] },
+    { id: 'b2-h1', title: 'School places for your children', note: 'Some schools give places to staff children. One Portuguese school lists places for up to two children. Many offer none, so ask.', label: 'VERIFIED', srcs: [SJS, TH] },
+    { title: 'Orientation and first-week help', note: 'Some schools give an induction, a driver for a first supermarket trip, or help buying furniture. One teacher describes this from her own schools.', label: 'PROBABLY TRUE', srcs: [TES, TA] },
+  ],
+};
+
+// One-page checklist: who does what. kind: employer (has to), might (some schools), you (always yours).
+export type Task = { task: string; who: 'employer' | 'might' | 'you'; label?: 'VERIFIED' | 'PROBABLY TRUE' | 'UNVERIFIED'; note?: string; src?: { label: string; url: string }; id?: string };
+export const CHECKLIST: { when: string; tasks: Task[] }[] = [
+  { when: 'Before you arrive', tasks: [
+    { task: 'Written job contract or invitation letter', who: 'employer', label: 'PROBABLY TRUE', id: 'b4-d1', note: 'Only the school can issue it. The site’s teaching-visa answer says it is needed.' },
+    { task: 'Visa or permit paperwork support, and who pays the fees', who: 'might', label: 'PROBABLY TRUE', note: 'Ask HR.', src: { label: TH.label, url: TH.url } },
+    { task: 'Relocation allowance and flights', who: 'might', label: 'VERIFIED', note: 'Listed by one Portuguese school, not universal.', src: { label: SJS.label, url: SJS.url } },
+    { task: 'Health insurance in the package', who: 'might', label: 'VERIFIED', src: { label: SJS.label, url: SJS.url } },
+    { task: 'Temporary housing and help finding a home', who: 'might', label: 'PROBABLY TRUE', src: { label: TES.label, url: TES.url } },
+    { task: 'Airport pickup', who: 'might', label: 'PROBABLY TRUE', src: { label: TA.label, url: TA.url } },
+    { task: 'Order your FBI background check', who: 'you', id: 'b1-q10', note: 'It is your own record, requested by you.' },
+    { task: 'Get documents apostilled', who: 'you', id: 'b1-q11a' },
+    { task: 'Renew your passport if needed', who: 'you', id: 'b1-q6' },
+    { task: 'Book and attend your visa appointment', who: 'you', id: 'b1-q8', note: 'You appear in person.' },
+    { task: 'Ship or mail belongings', who: 'you', id: 'b1-q16', note: 'Unless your package pays for shipping.' },
+    { task: 'Plan phone number and US banking', who: 'you', id: 'b1-q18' },
+  ]},
+  { when: 'After you arrive', tasks: [
+    { task: 'Tell Portuguese Social Security you were hired (needs your NISS)', who: 'employer', label: 'VERIFIED', src: { label: 'gov.pt: notification of employee admission', url: 'https://www2.gov.pt/en/inicio/espaco-empresa/balcao-do-empreendedor/entidade-empregadora-comunicacao-de-admissao-de-trabalhador' } },
+    { task: 'Pay social security contributions, including the employee share', who: 'employer', label: 'VERIFIED', src: { label: EPORT.srcLabel, url: EPORT.src } },
+    { task: 'Get your NISS and NIF started early (HR needs them)', who: 'might', label: 'UNVERIFIED', note: 'Reasoned: payroll needs them. Practice varies.', id: 'b2-b3' },
+    { task: 'Bank letter or staff at the first bank visit', who: 'might', label: 'PROBABLY TRUE', src: { label: TES.label, url: TES.url }, id: 'b2-d1' },
+    { task: 'Orientation, first-week help, furniture or supermarket trip', who: 'might', label: 'PROBABLY TRUE', src: { label: TES.label, url: TES.url } },
+    { task: 'School places for your children', who: 'might', label: 'VERIFIED', note: 'Listed by one Portuguese school, not universal.', src: { label: SJS.label, url: SJS.url }, id: 'b2-h1' },
+    { task: 'File the residence-permit request', who: 'might', label: 'PROBABLY TRUE', id: 'b4-d3', note: 'The law lets you or a representative file. Biometrics stay yours.' },
+    { task: 'Attend your AIMA appointment and give biometrics', who: 'you', id: 'b2-a1', note: 'In person, no one can do it for you.' },
+    { task: 'Register at a health centre and get your SNS number', who: 'you', id: 'b2-b5' },
+    { task: 'Decide which bank, sign contracts, set up utilities', who: 'you', id: 'b2-f3' },
+    { task: 'Sign your own lease', who: 'you', id: 'b2-f1' },
+    { task: 'File your own Portuguese tax return', who: 'you', id: 'b3-j4', note: 'Even if the employer withholds tax.' },
+    { task: 'File US taxes, FBAR and Form 8938', who: 'you', id: 'b3-a1' },
+    { task: 'Track renewal dates for your permit', who: 'you', id: 'b4-a2' },
+  ]},
+  { when: 'When the job ends', tasks: [
+    { task: 'Report the end of the job and give a certificate of employment', who: 'employer', label: 'VERIFIED', src: { label: EPORT.srcLabel, url: EPORT.src }, id: 'b4-f1' },
+    { task: 'Sort out your next permit or health cover', who: 'you', id: 'b4-g3' },
+  ]},
+];

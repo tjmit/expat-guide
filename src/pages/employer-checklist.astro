@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Legend from '../components/Legend.astro';
+import { CHECKLIST } from '../lib/summaries';
+import { CONF_CLASS, CONF_ORIGINAL } from '../lib/qa';
+const WHO = { employer: 'Employer has to', might: 'Employer might', you: 'Yours' } as const;
+---
+<Base title="Employer or you? Checklist">
+  <h1 id="top">Employer or you? Checklist</h1>
+  <p>Who usually does what for a newly hired teacher or other worker, before and after arrival. Tasks that only you can do are marked <strong>Yours</strong>. Tasks that depend on the employer are marked <strong>Employer might</strong>: ask your HR department. Where a task has no source, it is marked REASONABLY TRUE / UNVERIFIED, meaning reasoned and not confirmed.</p>
+  <p class="muted">What schools offer varies a lot. The school examples come from one expired job posting and from recruiter advice pages, not from every school. General information, not legal advice.</p>
+  {CHECKLIST.map(g => (
+    <section class="ck">
+      <h2>{g.when}</h2>
+      <ul>
+        {g.tasks.map(t => (
+          <li class={`w-${t.who}`}>
+            <span class="who">{WHO[t.who]}</span>
+            <span class="tt">{t.id ? <a href={`/all#${t.id}`}>{t.task}</a> : t.task}
+              {t.note && <span class="muted"> {t.note}</span>}
+              {t.label && <> <span class={`badge ${CONF_CLASS[t.label]}`}>{CONF_ORIGINAL[t.label]}</span></>}
+              {t.src && <> <a class="xs" href={t.src.url} rel="noopener">{t.src.label}</a></>}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  <Legend />
+  <p class="totop"><a href="#top">↑ Back to top</a></p>
+</Base>
+<style is:global>
+  .ck ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.5rem; }
+  .ck li { display:flex; gap:.7rem; align-items:flex-start; font-size:.95rem; line-height:1.45; padding:.5rem .7rem; border-radius:14px; background:var(--surface); }
+  .ck .who { flex:none; width:7.5rem; font-weight:800; font-size:.8rem; }
+  .ck .w-employer .who { color:var(--green); } .ck .w-might .who { color:#9a6a00; } .ck .w-you .who { color:#1f4e8c; }
+  .ck .xs { font-size:.85rem; text-decoration:underline; }
+  @media (max-width:600px){ .ck li { flex-direction:column; gap:.2rem; } .ck .who { width:auto; } }
+</style>
