@@ -61,8 +61,8 @@ const tone = PHASE_TONE[phase.key];
     ]} />
   )}
   {phase.key !== 'B6' && jumpLinks.length > 1 && <JumpTo links={jumpLinks} />}
-  <EmployerHelp phaseKey={phase.key} items={items} />
   {phase.key !== 'B6' && <PhaseSummary phaseKey={phase.key} items={items} />}
+  <EmployerHelp phaseKey={phase.key} items={items} />
   {phase.key === 'B6' && <CascaisAbout />}
   {phase.key === 'B6' && <CascaisMarket />}
   {phase.key === 'B6' && <CascaisVisit />}
