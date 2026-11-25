@@ -110,19 +110,19 @@ const SJS = { label: 'Tes: St. Julian’s School job posting (2024, expired)', u
 const SCH = { label: 'Schrole: becoming an international teacher in Portugal (2023)', url: 'https://www.schrole.com/news/everything-you-need-to-know-about-becoming-an-international-teacher-in-portugal/' };
 export const EMPLOYER_MIGHT: Record<string, Might[]> = {
   B1: [
-    { id: 'b1-q1', title: 'Visa and permit support', note: 'Some schools manage the visa and work-permit paperwork and pay the fees. Recruiter guides tell teachers to ask who does it and who pays. The visa appointment and your own documents stay yours.', label: 'PROBABLY TRUE', srcs: [TH, TA] },
-    { id: 'b1-q13', title: 'Health insurance', note: 'Some schools include medical insurance in the package. One Portuguese school lists “medical and life insurance” in a posting. Ask whether it meets the visa requirement and covers family.', label: 'VERIFIED', srcs: [SJS, SCH] },
-    { id: 'b1-q14', title: 'Help finding housing', note: 'Some schools help you find a home, or give temporary housing on arrival. Tes says schools “usually” support the search.', label: 'PROBABLY TRUE', srcs: [TES, TA] },
-    { title: 'Relocation allowance and flights', note: 'Some schools pay a relocation allowance, including flights at the start and end of the contract. One Portuguese school lists exactly that. Others offer none.', label: 'VERIFIED', srcs: [SJS, TA] },
-    { title: 'Airport pickup and a welcome orientation', note: 'Some schools meet new staff at the airport or hold an induction.', label: 'PROBABLY TRUE', srcs: [TA, TH, TES] },
+    { id: 'b1-q1', title: 'Visa and permit support', note: 'Some schools handle the visa and work-permit paperwork and pay the fees, and some do not. Recruiter guides tell teachers to ask who does it and who pays, so ask before you accept. The visa appointment and your own documents stay yours.', label: 'PROBABLY TRUE', srcs: [TH, TA] },
+    { id: 'b1-q13', title: 'Health insurance', note: 'Some schools include medical insurance in the package, others do not. One Portuguese school lists “medical and life insurance” in a posting. Ask whether any cover is included, whether it meets the visa requirement, and whether it covers family.', label: 'VERIFIED', srcs: [SJS, SCH] },
+    { id: 'b1-q14', title: 'Help finding housing', note: 'Some schools help with the home search or give temporary housing on arrival. It varies, so ask whether yours does.', label: 'PROBABLY TRUE', srcs: [TES, TA] },
+    { title: 'Relocation allowance and flights', note: 'Some schools pay a relocation allowance, including flights. One Portuguese school lists that in a posting. Others offer none, so only count on what your offer or contract says.', label: 'VERIFIED', srcs: [SJS, TA] },
+    { title: 'Airport pickup and a welcome orientation', note: 'Some schools meet new staff at the airport or hold an induction. Many do not, so plan your own arrival unless told otherwise.', label: 'PROBABLY TRUE', srcs: [TA, TH, TES] },
   ],
   B2: [
-    { id: 'b2-b3', title: 'Your NISS (Social Security number)', note: 'The employer needs your NISS to notify Social Security that you were hired (gov.pt lists it as a required item), so it makes sense for HR to help you get it early. Whether yours does is not documented.', label: 'UNVERIFIED', srcs: [{ label: 'gov.pt: notification of employee admission', url: 'https://www2.gov.pt/en/inicio/espaco-empresa/balcao-do-empreendedor/entidade-empregadora-comunicacao-de-admissao-de-trabalhador' }] },
-    { id: 'b2-b1', title: 'Your NIF (tax number)', note: 'HR departments often need your NIF for payroll, so some may book the appointment or guide you. Reasoned, not sourced.', label: 'UNVERIFIED', srcs: [] },
-    { id: 'b2-d1', title: 'Opening a bank account', note: 'Some schools write a letter for the bank or send a staff member to the first visit. One teachers’ guide recommends the staff visit. You still choose the bank and sign.', label: 'PROBABLY TRUE', srcs: [TES, TH] },
-    { id: 'b2-c1', title: 'Registering for healthcare', note: 'Recruiter guides list help with healthcare registration as something to ask HR for. You register in person with your own numbers.', label: 'PROBABLY TRUE', srcs: [TH] },
-    { id: 'b2-h1', title: 'School places for your children', note: 'Some schools give places to staff children. One Portuguese school lists places for up to two children. Many offer none, so ask.', label: 'VERIFIED', srcs: [SJS, TH] },
-    { title: 'Orientation and first-week help', note: 'Some schools give an induction, a driver for a first supermarket trip, or help buying furniture. One teacher describes this from her own schools.', label: 'PROBABLY TRUE', srcs: [TES, TA] },
+    { id: 'b2-b3', title: 'Your NISS (Social Security number)', note: 'The employer needs your NISS to notify Social Security that you were hired (gov.pt lists it as a required item), so ask early who gets it and when. Whether your employer helps is not documented.', label: 'UNVERIFIED', srcs: [{ label: 'gov.pt: notification of employee admission', url: 'https://www2.gov.pt/en/inicio/espaco-empresa/balcao-do-empreendedor/entidade-empregadora-comunicacao-de-admissao-de-trabalhador' }] },
+    { id: 'b2-b1', title: 'Your NIF (tax number)', note: 'Payroll usually needs your NIF, so ask early who gets it and whether anyone can guide you. Reasoned, not sourced.', label: 'UNVERIFIED', srcs: [] },
+    { id: 'b2-d1', title: 'Opening a bank account', note: 'Some schools write a letter for the bank or send a staff member to the first visit, and many do not. You still choose the bank and sign.', label: 'PROBABLY TRUE', srcs: [TES, TH] },
+    { id: 'b2-c1', title: 'Registering for healthcare', note: 'Recruiter guides list healthcare registration help as something to ask HR about. Do not assume it. You register in person with your own numbers.', label: 'PROBABLY TRUE', srcs: [TH] },
+    { id: 'b2-h1', title: 'School places for your children', note: 'Some schools give places to staff children. One Portuguese school lists places for up to two children. Many offer none, so ask before you accept.', label: 'VERIFIED', srcs: [SJS, TH] },
+    { title: 'Orientation and first-week help', note: 'Some schools give an induction or help with first purchases. One teacher describes this from her own schools. It varies widely.', label: 'PROBABLY TRUE', srcs: [TES, TA] },
   ],
 };
 
@@ -130,9 +130,9 @@ export const EMPLOYER_MIGHT: Record<string, Might[]> = {
 export type Task = { task: string; who: 'employer' | 'might' | 'you'; label?: 'VERIFIED' | 'PROBABLY TRUE' | 'UNVERIFIED'; note?: string; src?: { label: string; url: string }; id?: string };
 export const CHECKLIST: { when: string; tasks: Task[] }[] = [
   { when: 'Before you arrive', tasks: [
-    { task: 'Written job contract or invitation letter', who: 'employer', label: 'PROBABLY TRUE', id: 'b4-d1', note: 'Only the school can issue it. The site’s teaching-visa answer says it is needed.' },
-    { task: 'Visa or permit paperwork support, and who pays the fees', who: 'might', label: 'PROBABLY TRUE', note: 'Ask HR.', src: { label: TH.label, url: TH.url } },
-    { task: 'Relocation allowance and flights', who: 'might', label: 'VERIFIED', note: 'Listed by one Portuguese school, not universal.', src: { label: SJS.label, url: SJS.url } },
+    { task: 'Written job contract or invitation letter', who: 'employer', label: 'PROBABLY TRUE', id: 'b4-d1', note: 'Only the employer can issue it, and the visa answers on this site say it is needed.' },
+    { task: 'Visa or permit paperwork support, and who pays the fees', who: 'might', label: 'PROBABLY TRUE', note: 'Ask early.', src: { label: TH.label, url: TH.url } },
+    { task: 'Relocation allowance and flights', who: 'might', label: 'VERIFIED', note: 'One Portuguese school lists this. Many do not.', src: { label: SJS.label, url: SJS.url } },
     { task: 'Health insurance in the package', who: 'might', label: 'VERIFIED', src: { label: SJS.label, url: SJS.url } },
     { task: 'Temporary housing and help finding a home', who: 'might', label: 'PROBABLY TRUE', src: { label: TES.label, url: TES.url } },
     { task: 'Airport pickup', who: 'might', label: 'PROBABLY TRUE', src: { label: TA.label, url: TA.url } },
@@ -146,10 +146,10 @@ export const CHECKLIST: { when: string; tasks: Task[] }[] = [
   { when: 'After you arrive', tasks: [
     { task: 'Tell Portuguese Social Security you were hired (needs your NISS)', who: 'employer', label: 'VERIFIED', src: { label: 'gov.pt: notification of employee admission', url: 'https://www2.gov.pt/en/inicio/espaco-empresa/balcao-do-empreendedor/entidade-empregadora-comunicacao-de-admissao-de-trabalhador' } },
     { task: 'Pay social security contributions, including the employee share', who: 'employer', label: 'VERIFIED', src: { label: EPORT.srcLabel, url: EPORT.src } },
-    { task: 'Get your NISS and NIF started early (HR needs them)', who: 'might', label: 'UNVERIFIED', note: 'Reasoned: payroll needs them. Practice varies.', id: 'b2-b3' },
-    { task: 'Bank letter or staff at the first bank visit', who: 'might', label: 'PROBABLY TRUE', src: { label: TES.label, url: TES.url }, id: 'b2-d1' },
+    { task: 'NISS and NIF: ask early who gets them (payroll needs them)', who: 'might', label: 'UNVERIFIED', note: 'Reasoned. Practice varies.', id: 'b2-b3' },
+    { task: 'Bank letter or staff at the first bank visit', who: 'might', note: 'Many do not.', label: 'PROBABLY TRUE', src: { label: TES.label, url: TES.url }, id: 'b2-d1' },
     { task: 'Orientation, first-week help, furniture or supermarket trip', who: 'might', label: 'PROBABLY TRUE', src: { label: TES.label, url: TES.url } },
-    { task: 'School places for your children', who: 'might', label: 'VERIFIED', note: 'Listed by one Portuguese school, not universal.', src: { label: SJS.label, url: SJS.url }, id: 'b2-h1' },
+    { task: 'School places for your children', who: 'might', label: 'VERIFIED', note: 'One Portuguese school lists this. Many do not.', src: { label: SJS.label, url: SJS.url }, id: 'b2-h1' },
     { task: 'File the residence-permit request', who: 'might', label: 'PROBABLY TRUE', id: 'b4-d3', note: 'The law lets you or a representative file. Biometrics stay yours.' },
     { task: 'Attend your AIMA appointment and give biometrics', who: 'you', id: 'b2-a1', note: 'In person, no one can do it for you.' },
     { task: 'Register at a health centre and get your SNS number', who: 'you', id: 'b2-b5' },

@@ -4,12 +4,13 @@ import Icon from '../components/Icon.astro';
 import Legend from '../components/Legend.astro';
 import { CHECKLIST } from '../lib/summaries';
 import { CONF_CLASS, CONF_ORIGINAL } from '../lib/qa';
-const WHO = { employer: 'Employer has to', might: 'Employer might', you: 'Yours' } as const;
+const WHO = { employer: 'Needs the employer', might: 'Some employers offer', you: 'Yours' } as const;
 ---
 <Base title="Employer or you? Checklist">
   <h1 id="top">Employer or you? Checklist</h1>
-  <p>Who usually does what for a newly hired teacher or other worker, before and after arrival. Tasks that only you can do are marked <strong>Yours</strong>. Tasks that depend on the employer are marked <strong>Employer might</strong>: ask your HR department. Where a task has no source, it is marked REASONABLY TRUE / UNVERIFIED, meaning reasoned and not confirmed.</p>
-  <p class="muted">What schools offer varies a lot. The school examples come from one expired job posting and from recruiter advice pages, not from every school. General information, not legal advice.</p>
+  <p><strong>Contracts differ.</strong> What your employer actually commits to is whatever is in your job offer and contract. Nothing on this page is a promise or something to expect. Use it as a list of questions to ask early, and do not assume.</p>
+  <p>Three kinds of task: <strong>Needs the employer</strong> (usually cannot happen without something only the employer can issue, sign or file, so confirm who does it and when). <strong>Some employers offer</strong> (a benefit that varies widely and is never guaranteed, so ask). <strong>Yours</strong> (only you can do it). Items with no source are marked REASONABLY TRUE / UNVERIFIED, meaning reasoned and not confirmed.</p>
+  <p class="muted">School examples come from one expired job posting and from recruiter advice pages, not from every school. General information, not legal advice.</p>
   {CHECKLIST.map(g => (
     <section class="ck">
       <h2>{g.when}</h2>

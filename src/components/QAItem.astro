@@ -22,7 +22,7 @@ const searchText = [d.question, d.badge, d.section, d.tags.join(' '), brief, cit
         <span class="badges">
           <span class={`badge ${CONF_CLASS[d.confidence]}`}><Icon name={CONF_ICON[d.confidence]} />{CONF_LABEL[d.confidence]}</span>
           {d.badge && <span class="badge info"><Icon name="plane" />{d.badge}</span>}
-          {EMPLOYER_IDS.has(d.id) && <span class="badge emp-b"><Icon name="briefcase" />Your employer may help</span>}
+          {EMPLOYER_IDS.has(d.id) && <span class="badge emp-b"><Icon name="briefcase" />May need your employer</span>}
         </span>
       </span>
       <span class="chev"><Icon name="chevron-down" /></span>
