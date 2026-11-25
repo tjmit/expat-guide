@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+const rows = [
+  { t: 'Which station? Portela de Sintra vs Sintra', x: 'Portela de Sintra and Sintra are two different stops on the CP Sintra Line (the commuter train, like a Metro-North or NJ Transit line). Sintra is the end of the line, and Portela de Sintra is the stop before it. VERIFIED from Wikipedia. I could not find a sourced distance or train time between them, so check the CP app or the board. The Carris Metropolitana stop names say "Entrada Norte" and "Entrada Sul" at Portela de Sintra, which looks like two sides of one station, REASONABLY TRUE-UNVERIFIED. If the "north station" people mean is the end-of-line Sintra station, then yes: it is the one that connects to the town and the tourist buses, and Portela de Sintra does not. If you take a bus to Portela (the 1620 to 1624 lines from Cascais), the one train stop on to Sintra is the simple way in.' },
+  { t: 'Historic centre (Sintra Vila, the old town)', x: 'From Sintra station the National Palace of Sintra is a 10-15 minute walk, and so is Villa Sassetti (Ferreira de Castro square). VERIFIED, from Parques de Sintra. Cars are limited to residents in the historic centre.' },
+  { t: 'Pena Palace and the Moorish Castle', x: 'Scotturb bus 434 starts at Sintra station and runs a circular route to the Moorish Castle and Pena. VERIFIED, from Scotturb and Parques de Sintra. Wikipedia says it stops in front of the station. A third-party guide says 4 departures an hour between 10:00 and 17:00, about 27 minutes for the whole loop, and a 24-hour pass of about €10.96 for the Sintra buses, PROBABLY TRUE, and prices change. The same guide says a 434 also leaves Portela de Sintra station twice an hour, REASONABLY TRUE-UNVERIFIED. Walking is possible: Parques lists marked trails to Pena and the Castle from Villa Sassetti (1,850 m, 45 minutes) and from Santa Maria (1,770 m, 1 hour). VERIFIED. Cars are not allowed up to Pena or the Castle; Parques says to use the car parks outside.' },
+  { t: 'Quinta da Regaleira, Seteais and Monserrate', x: 'Scotturb route 435 covers Quinta da Regaleira, Seteais Palace and Monserrate from Sintra station, via São Pedro and Sintra Vila. VERIFIED, from Scotturb. Carris Metropolitana 1253 also lists stops at Regaleira and Monserrate, PROBABLY TRUE (from the Transit app, not the official page). Parques de Sintra names 1253 and 435 for Monserrate.' },
+  { t: 'Cabo da Roca', x: 'Carris Metropolitana 1253, "Sintra (Estação) via Cabo da Roca", is a circular line that starts and ends at Sintra station, with about one trip every 40 minutes. PROBABLY TRUE (Transit app listing), and Parques de Sintra also names 1253 for Cabo da Roca. VERIFIED that it is named. This is not line 1252, which the same app lists as "Portela Sintra (Estação Sul) via Ranholas". From Cascais you can also take 1624 (see the buses above), which I could not read stop by stop.' },
+  { t: 'Taxi or Uber', x: 'A third-party guide gives about €12 by taxi (€15 on weekends) or about €10 by Uber from the station to Pena. REASONABLY TRUE-UNVERIFIED: prices change and I found no official fare.' },
+];
+---
+<section id="sintra-getting-around" class="visit sintra" aria-label="Getting around Sintra">
+  <h2>Getting around Sintra</h2>
+  <p class="muted">Once you reach Sintra, whether by train or by the Cascais bus to Portela de Sintra, here is how to reach the main sights. Hours, routes and prices change, so check the Scotturb and Carris Metropolitana apps.</p>
+  <div class="bus-col">
+    <h3><span class="ic"><Icon name="bus" /></span>From the station to the sights</h3>
+    {rows.map(r => <div class="bus-row"><h4>{r.t}</h4><p>{r.x}</p></div>)}
+  </div>
+  <p class="totop"><a href="#top">↑ Back to top</a></p>
+</section>
+<style is:global>
+  .sintra { margin:1.4rem 0; }
+  .sintra h2 { font-size:1.15rem; margin:0 0 .2rem; }
+  .sintra > p { margin:0 0 .7rem; font-size:.92rem; line-height:1.5; }
+</style>
